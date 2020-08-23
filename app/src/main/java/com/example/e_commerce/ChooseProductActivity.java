@@ -13,9 +13,6 @@ public class ChooseProductActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!MainActivity.loggedIn) {
-            startActivity(new Intent(ChooseProductActivity.this, LoginActivity.class));
-        }
         setContentView(R.layout.activity_choose_product);
         readProducts();
         gridView = findViewById(R.id.product_grid_view);
