@@ -8,9 +8,19 @@ public class Product {
     private final ArrayList<Item> items;
     private final ArrayList<Item> chosenItems;
 
-    public Product() {
+    public Product(ProductDbHelper db) throws Exception {
         this.items = new ArrayList<>();
         this.chosenItems = new ArrayList();
+
+        db.start();
+
+        Cursor cursor = db.loadData();
+        if(cursor == null || cursor.getCount() == 0) {
+            throw new Exception("ERROR IN DB");
+        }
+        else {
+            load(cursor);
+        }
     }
 
     public void load(Cursor cursor) {

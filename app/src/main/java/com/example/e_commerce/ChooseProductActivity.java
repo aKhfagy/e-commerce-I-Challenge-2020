@@ -1,10 +1,12 @@
 package com.example.e_commerce;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.widget.GridView;
 
 public class ChooseProductActivity extends AppCompatActivity {
+    private Product p;
+    private GridView gridView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

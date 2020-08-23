@@ -16,14 +16,6 @@ public class MainActivity extends AppCompatActivity {
         if (!loggedIn) {
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
         }
-        setContentView(R.layout.activity_main);
-        ProductDbHelper db = new ProductDbHelper(this);
-        Product p = new Product();
-        Cursor cursor = db.loadData();
-        if (cursor == null || cursor.getCount() == 0) {
-            Toast.makeText(this, "ERROR", Toast.LENGTH_LONG).show();
-        } else {
-            p.load(cursor);
-        }
+        startActivity(new Intent(MainActivity.this, ChooseProductActivity.class));
     }
 }
