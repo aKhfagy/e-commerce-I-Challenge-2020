@@ -15,9 +15,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         if (!MainActivity.loggedIn) {
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            finish();
         }
         else {
             startActivity(new Intent(MainActivity.this, ChooseProductActivity.class));
+            finish();
         }
     }
 }

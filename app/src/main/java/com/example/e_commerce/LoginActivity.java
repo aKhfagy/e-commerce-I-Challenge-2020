@@ -74,6 +74,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     break;
                 else {
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    finish();
                 }
                 boolean isExist = databaseHelper.isUserExists(userEmail.getText().toString(), userPassword.getText().toString());
 
