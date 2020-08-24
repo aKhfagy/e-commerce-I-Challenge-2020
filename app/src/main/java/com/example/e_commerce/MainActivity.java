@@ -16,12 +16,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sharedPreferences=getSharedPreferences(User.PREFERENCE_NAME, Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(User.PREFERENCE_NAME, Context.MODE_PRIVATE);
 
-        if (sharedPreferences.getBoolean(User.REMEMBER_ME, false))
+        if (sharedPreferences.getBoolean(User.REMEMBER_ME, false)) {
             startActivity(new Intent(MainActivity.this, ChooseProductActivity.class));
             finish();
-
+        }
         else {
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
             finish();
