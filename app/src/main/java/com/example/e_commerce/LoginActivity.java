@@ -1,9 +1,12 @@
 package com.example.e_commerce;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,6 +14,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.e_commerce.login.LoginDbHelper;
+import com.example.e_commerce.login.User;
+import com.example.e_commerce.login.Users;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -18,7 +23,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText userEmail,userPassword;
     TextView registerLink;
     LoginDbHelper databaseHelper;
-
+    CheckBox checkBoxRememberMe;
+    private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,12 +34,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginBtn = (Button) findViewById(R.id.login_btn);
         userEmail = (EditText) findViewById(R.id.edt_User_email);
         userPassword = (EditText) findViewById(R.id.edt_User_Password);
+        checkBoxRememberMe = findViewById(R.id.remember_me);
 
         databaseHelper = new LoginDbHelper(LoginActivity.this);
-
         loginBtn.setOnClickListener(this);
         registerLink.setOnClickListener(this);
 
+        sharedPreferences=getSharedPreferences(User.PREFERENCE_NAME, Context.MODE_PRIVATE);
 
 
     }
@@ -61,7 +68,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Toast.makeText(LoginActivity.this, "Please enter correct email format", Toast.LENGTH_LONG).show();
             return false;
         }
-        MainActivity.loggedIn = true;
         return true;
     }
 
@@ -79,8 +85,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 if(isExist)
                 {
-                    Toast.makeText(LoginActivity.this, "Loggggggggg", Toast.LENGTH_LONG).show();
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean(User.REMEMBER_ME, checkBoxRememberMe.isChecked());
+                    editor.apply();
                     clearFields();
+                    finish();
                 }
                 else {
                     Toast.makeText(LoginActivity.this, "noooo", Toast.LENGTH_LONG).show();

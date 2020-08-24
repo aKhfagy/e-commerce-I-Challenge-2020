@@ -67,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(RegisterActivity.this, "Please enter correct email format", Toast.LENGTH_LONG).show();
             return false;
         }
-        if(!userPassword.getText().toString().equals(userConfirmPassword.getText().toString()))
+        if(!userPassword.getText().toString().equals(userConfirmPassword.getText              ().toString()))
         {
             Toast.makeText(RegisterActivity.this, "Please confirm your password correctly ", Toast.LENGTH_LONG).show();
             return false;
