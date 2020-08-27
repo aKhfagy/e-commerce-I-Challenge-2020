@@ -23,7 +23,7 @@ class ProductDbHelper extends SQLiteOpenHelper {
     private SQLiteDatabase dbObj;
 
     public ProductDbHelper(Context context) {
-        super(context, DB_NAME, null, 1);
+        super(context, DB_NAME, null, 2);
         this.context = context;
     }
 
