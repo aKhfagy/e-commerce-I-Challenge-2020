@@ -10,11 +10,13 @@ public class Users {
             public static final String USERNAME = "username";
             public static final String PASSWORD = "password";
             public static final String EMAIL = "email";
+            public static final String BIRTHDATE = "birthdate";
             public static final String createTable= "create table " + Users.UserTable.TABLE_NAME
                     + "(" + Users.UserTable.ID + " integer primary key, "
                     + Users.UserTable.USERNAME + " text not null, "
                     + UserTable.EMAIL + " text not null, "
-                    + Users.UserTable.PASSWORD + " text)";
+                    + Users.UserTable.PASSWORD + " text,"
+                    + UserTable.BIRTHDATE + " text)";
         }
 
 }

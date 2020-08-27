@@ -11,4 +11,5 @@
     <string name="remember_me">Remember Me</string>
     <string name="forget_password">Forget Password</string>
     <string name="new_password">New Password</string>
+    <string name="choose_your_birthday">Choose your birthday</string>
 </resources>

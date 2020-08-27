@@ -15,13 +15,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.e_commerce.login.LoginDbHelper;
 import com.example.e_commerce.login.User;
-import com.example.e_commerce.login.Users;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
     Button loginBtn;
     EditText userEmail,userPassword;
-    TextView registerLink;
+    TextView registerLink,forgetLink;
     LoginDbHelper databaseHelper;
     CheckBox checkBoxRememberMe;
     private SharedPreferences sharedPreferences;
@@ -31,6 +30,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
 
         registerLink=(TextView) findViewById(R.id.register_link);
+        forgetLink=(TextView) findViewById(R.id.forget_link);
         loginBtn = (Button) findViewById(R.id.login_btn);
         userEmail = (EditText) findViewById(R.id.edt_User_email);
         userPassword = (EditText) findViewById(R.id.edt_User_Password);
@@ -39,6 +39,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         databaseHelper = new LoginDbHelper(LoginActivity.this);
         loginBtn.setOnClickListener(this);
         registerLink.setOnClickListener(this);
+        forgetLink.setOnClickListener(this);
 
         sharedPreferences=getSharedPreferences(User.PREFERENCE_NAME, Context.MODE_PRIVATE);
 
@@ -97,10 +98,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 }
                 break;
+            case R.id.forget_link:
+                startActivity(new Intent(LoginActivity.this, ForgetPasswordActivity.class));
+                Toast.makeText(LoginActivity.this, "fff", Toast.LENGTH_LONG).show();
+                break;
 
             case R.id.register_link:
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
                 break;
+
         }
     }
 }

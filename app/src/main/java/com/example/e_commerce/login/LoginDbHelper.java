@@ -24,15 +24,12 @@ public class LoginDbHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public void addUser(String username,String email, String password) {
-        User user = new User();
-        user.setUsername(username);
-        user.setUserEmail(email);
-        user.setPassword(password);
+    public void addUser(User user) {
         ContentValues row = new ContentValues();
         row.put(Users.UserTable.USERNAME, user.getUsername());
         row.put(Users.UserTable.EMAIL, user.getUserEmail());
         row.put(Users.UserTable.PASSWORD, user.getPassword());
+        row.put(Users.UserTable.BIRTHDATE, user.getBirthdate());
         sqLiteDatabase = this.getWritableDatabase();
         sqLiteDatabase.insert(Users.UserTable.TABLE_NAME, null, row);
         sqLiteDatabase.close();
@@ -40,10 +37,24 @@ public class LoginDbHelper extends SQLiteOpenHelper {
 
 
     public boolean isUserExists(String email, String password) {
+            SQLiteDatabase sql = this.getReadableDatabase();
+            String selectQuery = "SELECT *  FROM " + Users.UserTable.TABLE_NAME + " WHERE " + Users.UserTable.EMAIL + "= '" + email + "' AND " + Users.UserTable.PASSWORD + "= '" + password + "' ";
+            Cursor cursor = sql.rawQuery(selectQuery, null);
+            if (cursor.getCount() > 0) {
+                cursor.close();
+                close();
+                return true;
+
+            } else {
+                cursor.close();
+                close();
+                return false;
+            }
+    }
+    public boolean isEmailExists(String email) {
         SQLiteDatabase sql=this.getReadableDatabase();
-        //String query=" select "+Users.UserTable.ID+" from "+Users.UserTable.TABLE_NAME+" LIMIT 1 WHERE "+ Users.UserTable.USERNAME+" = "+username;
-        String selectQuery = "SELECT *  FROM " + Users.UserTable.TABLE_NAME + " WHERE " + Users.UserTable.EMAIL +  "= '" + email + "' AND " + Users.UserTable.PASSWORD + "= '"+ password +"' "  ; ;
-         Cursor cursor =sql.rawQuery(selectQuery,null);
+        String selectQuery = "SELECT *  FROM " + Users.UserTable.TABLE_NAME + " WHERE " + Users.UserTable.EMAIL +  "= '" + email +"' "  ;
+        Cursor cursor =sql.rawQuery(selectQuery,null);
         if (cursor.getCount() > 0) {
             cursor.close();
             close();
@@ -56,5 +67,12 @@ public class LoginDbHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void updatePassword (String email, String password) {
+        ContentValues row = new ContentValues();
+        row.put(Users.UserTable.PASSWORD, password);
+        sqLiteDatabase = this.getWritableDatabase();
+        sqLiteDatabase.update(Users.UserTable.TABLE_NAME, row, Users.UserTable.EMAIL + " = ?",new String[] { email });
+        sqLiteDatabase.close();
+    }
 
 }
