@@ -5,32 +5,22 @@ import android.database.Cursor;
 import java.util.ArrayList;
 
 public class Product {
-    private final ArrayList<Item> items;
+    private final ArrayList<Item>[] items;
     private final ArrayList<Item> chosenItems;
 
-    public Product(ProductDbHelper db, String key) throws Exception {
-        this.items = new ArrayList<>();
-        this.chosenItems = new ArrayList<>();
-
-        db.start();
-
-        Cursor cursor = db.loadData(key);
-        if(cursor == null || cursor.getCount() == 0) {
-            throw new Exception("ERROR IN DB");
-        }
-        else {
-            load(cursor);
-        }
-    }
-
     public Product(ProductDbHelper db) throws Exception {
-        this.items = new ArrayList<>();
         this.chosenItems = new ArrayList();
 
         db.start();
 
-        Cursor cursor = db.loadData();
-        if(cursor == null || cursor.getCount() == 0) {
+        Cursor[] cursor = db.loadData();
+        this.items = new ArrayList[cursor.length];
+
+        for(int i = 0; i < cursor.length; ++i) {
+            items[i] = new ArrayList<>();
+        }
+
+        if(cursor == null) {
             throw new Exception("ERROR IN DB");
         }
         else {
@@ -38,19 +28,21 @@ public class Product {
         }
     }
 
-    public void load(Cursor cursor) {
-        while(cursor.moveToNext()) {
-            items.add(new Item(cursor.getString(0), cursor.getString(1), cursor.getString(2)));
+    public void load(Cursor[] cursors) {
+        for(int i = 0; i < cursors.length; ++i) {
+            while (cursors[i].moveToNext()) {
+                items[i].add(new Item(cursors[i].getString(0), cursors[i].getString(1), cursors[i].getString(2)));
+            }
+            cursors[i].close();
         }
-        cursor.close();
     }
 
-    public void addChosenItem(int i) {
-        this.chosenItems.add(items.get(i));
+    public void addChosenItem(int i, int position) {
+        this.chosenItems.add(items[position].get(i));
     }
 
-    public ArrayList<Item> getItems() {
-        return items;
+    public ArrayList<Item> getItems(int position) {
+        return items[position];
     }
 
     public ArrayList<Item> getChosenItems() {

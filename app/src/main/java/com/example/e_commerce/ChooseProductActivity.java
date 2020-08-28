@@ -25,7 +25,9 @@ public class ChooseProductActivity extends AppCompatActivity {
     private ShoppingCart shoppingCart;
     private TextView search;
     private Button cancel, removeResults;
-    private ImageButton getVoiceInputBtn;
+    private ImageButton getVoiceInputBtn, btnFood, btnNuggets, btnSalads, btnHappyMeals, btnMcCafe;
+    private ImageButton btnSweetTreats, btnBreakfastMeals, btnMorningPlatters;
+    private int index = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,18 +43,98 @@ public class ChooseProductActivity extends AppCompatActivity {
                 startActivity(new Intent(ChooseProductActivity.this,ShoppingCartActivity.class));
             }
         });
+        btnMorningPlatters = findViewById(R.id.btn_morning_platters);
+        btnBreakfastMeals = findViewById(R.id.btn_breakfast_meals);
+        btnSweetTreats = findViewById(R.id.btn_sweet_treats);
+        btnMcCafe = findViewById(R.id.btn_mc_caffee);
+        btnHappyMeals = findViewById(R.id.btn_happy_meal);
+        btnFood = findViewById(R.id.btn_food);
+        btnNuggets = findViewById(R.id.btn_nuggets);
+        btnSalads = findViewById(R.id.btn_salads);
         search = findViewById(R.id.txt_search_box);
         getVoiceInputBtn = findViewById(R.id.btn_voice_input);
         removeResults = findViewById(R.id.btn_remove_search_results);
         cancel = findViewById(R.id.btn_cancel);
-        ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p);
+        ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
         gridView.setAdapter(productAdapter);
+
+        btnFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                index = 0;
+                ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
+                gridView.setAdapter(productAdapter);
+            }
+        });
+
+        btnNuggets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                index = 1;
+                ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
+                gridView.setAdapter(productAdapter);
+            }
+        });
+
+        btnSalads.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                index = 2;
+                ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
+                gridView.setAdapter(productAdapter);
+            }
+        });
+
+        btnHappyMeals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                index = 3;
+                ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
+                gridView.setAdapter(productAdapter);
+            }
+        });
+
+        btnMcCafe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                index = 4;
+                ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
+                gridView.setAdapter(productAdapter);
+            }
+        });
+
+        btnSweetTreats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                index = 5;
+                ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
+                gridView.setAdapter(productAdapter);
+            }
+        });
+
+        btnBreakfastMeals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                index = 6;
+                ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
+                gridView.setAdapter(productAdapter);
+            }
+        });
+
+        btnMorningPlatters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                index = 7;
+                ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
+                gridView.setAdapter(productAdapter);
+            }
+        });
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                p.addChosenItem(i);
-                Toast.makeText(getApplicationContext(), p.getItems().get(i).getName(), Toast.LENGTH_LONG).show();
+                p.addChosenItem(i, index);
+                Toast.makeText(getApplicationContext(), p.getItems(index).get(i).getName(), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -63,14 +145,7 @@ public class ChooseProductActivity extends AppCompatActivity {
                 if(motionEvent.getAction() == MotionEvent.ACTION_UP) {
                     if(motionEvent.getRawX() >=
                             (search.getRight() - search.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                        try {
-                            gridView.setAdapter(new ProductAdapter(getApplicationContext(),
-                                    new Product(new ProductDbHelper(getApplicationContext())
-                                            , search.getText().toString())));
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            Toast.makeText(getApplicationContext(), "ERROR!!!", Toast.LENGTH_LONG).show();
-                        }
+
 
                         removeResults.setVisibility(View.VISIBLE);
                         return true;
@@ -83,7 +158,7 @@ public class ChooseProductActivity extends AppCompatActivity {
         removeResults.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p);
+                ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
                 gridView.setAdapter(productAdapter);
                 removeResults.setVisibility(View.INVISIBLE);
             }

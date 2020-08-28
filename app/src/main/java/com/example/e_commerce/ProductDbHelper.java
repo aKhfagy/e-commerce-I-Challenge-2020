@@ -15,12 +15,22 @@ import java.io.OutputStream;
 
 class ProductDbHelper extends SQLiteOpenHelper {
     private static String DB_PATH= "data/data/com.example.e_commerce/databases/";
-    public static String DB_NAME = "products_db";
+    public static String DB_NAME = "data";
     private final Context context;
     private SQLiteDatabase dbObj;
+    public String[] tableNames = new String[]{
+            "product_db_Food",
+            "product_db_Nuggets",
+            "product_db_Salads",
+            "product_db_HappyMeal",
+            "product_db_McCafeDrinks",
+            "product_db_SweetTreats",
+            "product_db_BreakfastMeals",
+            "product_db_MorningPlatters"
+    };
 
     public ProductDbHelper(Context context) {
-        super(context, DB_NAME, null, 2);
+        super(context, DB_NAME, null, 3);
         this.context = context;
     }
 
@@ -62,7 +72,7 @@ class ProductDbHelper extends SQLiteOpenHelper {
             Log.i("myPath ......",path);
             if (checkDB!=null)
             {
-                Cursor c= checkDB.rawQuery("SELECT * FROM menu", null);
+                Cursor c= checkDB.rawQuery("SELECT * FROM product_db_Food", null);
                 Log.i("Cursor.......",c.getString(0));
                 c.moveToFirst();
                 String contents[]=new String[80];
@@ -157,26 +167,20 @@ class ProductDbHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor loadData(String key) {
+    public Cursor[] loadData() {
         SQLiteDatabase db = this.getReadableDatabase();
-        try {
-            Cursor cursor = db.rawQuery("SELECT * FROM menu", null);
-            return cursor;
-        } catch (Exception ex) {
-            Log.d("FAILED", ex.getMessage());
-            return null;
-        }
-    }
+        Cursor[] cursors = new Cursor[tableNames.length];
 
-    public Cursor loadData() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        try {
-            Cursor cursor = db.rawQuery("SELECT * FROM menu", null);
-            return cursor;
-        } catch (Exception ex) {
-            Log.d("FAILED", ex.getMessage());
-            return null;
+        for(int i = 0; i < tableNames.length; ++i) {
+            try {
+                String query = "SELECT * FROM " + tableNames[i];
+                cursors[i] = db.rawQuery(query, null);
+            } catch (Exception ex) {
+                Log.d("FAILED", ex.getMessage());
+                return null;
+            }
         }
-    }
 
+        return cursors;
+    }
 }
