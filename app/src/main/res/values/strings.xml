@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mac</string>
+    <string name="app_name">e-commerce</string>
     <string name="text_accounts">All Accounts</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -12,6 +12,13 @@
     <string name="forget_password">Forget Password</string>
     <string name="new_password">New Password</string>
     <string name="choose_your_birthday">Choose your birthday</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="logout">Logout</string>
+    <string name="your_cart">Your Cart</string>
+    <string name="profile">Profile</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="tab_text_1">Profile</string>
+    <string name="tab_text_2">Reviews</string>
     <string name="ItemName">Name</string>
     <string name="Cost">Cost</string>
     <string name="Size">size</string>
