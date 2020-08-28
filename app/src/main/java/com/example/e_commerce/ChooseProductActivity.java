@@ -61,6 +61,8 @@ public class ChooseProductActivity extends AppCompatActivity {
         btnFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(p.getItems().length == 1)
+                    readProducts();
                 index = 0;
                 ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
                 gridView.setAdapter(productAdapter);
@@ -70,6 +72,8 @@ public class ChooseProductActivity extends AppCompatActivity {
         btnNuggets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(p.getItems().length == 1)
+                    readProducts();
                 index = 1;
                 ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
                 gridView.setAdapter(productAdapter);
@@ -79,6 +83,8 @@ public class ChooseProductActivity extends AppCompatActivity {
         btnSalads.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(p.getItems().length == 1)
+                    readProducts();
                 index = 2;
                 ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
                 gridView.setAdapter(productAdapter);
@@ -88,6 +94,8 @@ public class ChooseProductActivity extends AppCompatActivity {
         btnHappyMeals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(p.getItems().length == 1)
+                    readProducts();
                 index = 3;
                 ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
                 gridView.setAdapter(productAdapter);
@@ -97,6 +105,8 @@ public class ChooseProductActivity extends AppCompatActivity {
         btnMcCafe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(p.getItems().length == 1)
+                    readProducts();
                 index = 4;
                 ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
                 gridView.setAdapter(productAdapter);
@@ -106,6 +116,8 @@ public class ChooseProductActivity extends AppCompatActivity {
         btnSweetTreats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(p.getItems().length == 1)
+                    readProducts();
                 index = 5;
                 ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
                 gridView.setAdapter(productAdapter);
@@ -115,6 +127,8 @@ public class ChooseProductActivity extends AppCompatActivity {
         btnBreakfastMeals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(p.getItems().length == 1)
+                    readProducts();
                 index = 6;
                 ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
                 gridView.setAdapter(productAdapter);
@@ -124,6 +138,8 @@ public class ChooseProductActivity extends AppCompatActivity {
         btnMorningPlatters.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(p.getItems().length == 1)
+                    readProducts();
                 index = 7;
                 ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
                 gridView.setAdapter(productAdapter);
@@ -145,9 +161,21 @@ public class ChooseProductActivity extends AppCompatActivity {
                 if(motionEvent.getAction() == MotionEvent.ACTION_UP) {
                     if(motionEvent.getRawX() >=
                             (search.getRight() - search.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        String s = search.getText().toString();
+                        Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+                        ArrayList<Item> searched = p.getSearchedItems(index, s);
 
+                        if(searched.size() == 0) {
+                            Toast.makeText(getApplicationContext(), "No Items Have That name", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            p = new Product(searched);
+                            index = 0;
+                            ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
+                            gridView.setAdapter(productAdapter);
+                            removeResults.setVisibility(View.VISIBLE);
+                        }
 
-                        removeResults.setVisibility(View.VISIBLE);
                         return true;
                     }
                 }
@@ -158,6 +186,7 @@ public class ChooseProductActivity extends AppCompatActivity {
         removeResults.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                readProducts();
                 ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
                 gridView.setAdapter(productAdapter);
                 removeResults.setVisibility(View.INVISIBLE);
