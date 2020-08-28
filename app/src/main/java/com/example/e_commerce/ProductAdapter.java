@@ -10,12 +10,12 @@ import android.widget.TextView;
 public class ProductAdapter extends BaseAdapter {
     private final Product product;
     private final Context context;
-    private LayoutInflater inflter;
+    private LayoutInflater inflater;
 
     public ProductAdapter(Context context, Product product) {
         this.product = product;
         this.context = context;
-        inflter = LayoutInflater.from(this.context);
+        inflater = LayoutInflater.from(this.context);
     }
 
     @Override
@@ -30,12 +30,12 @@ public class ProductAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = inflter.inflate(R.layout.product_grid_adapter, null);
+        convertView = inflater.inflate(R.layout.product_grid_adapter, null);
         TextView name = convertView.findViewById(R.id.product_name);
         name.setText(product.getItems().get(position).getName());
         TextView size = convertView.findViewById(R.id.product_size);

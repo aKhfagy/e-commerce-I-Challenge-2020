@@ -8,6 +8,21 @@ public class Product {
     private final ArrayList<Item> items;
     private final ArrayList<Item> chosenItems;
 
+    public Product(ProductDbHelper db, String key) throws Exception {
+        this.items = new ArrayList<>();
+        this.chosenItems = new ArrayList<>();
+
+        db.start();
+
+        Cursor cursor = db.loadData(key);
+        if(cursor == null || cursor.getCount() == 0) {
+            throw new Exception("ERROR IN DB");
+        }
+        else {
+            load(cursor);
+        }
+    }
+
     public Product(ProductDbHelper db) throws Exception {
         this.items = new ArrayList<>();
         this.chosenItems = new ArrayList();
@@ -28,6 +43,10 @@ public class Product {
             items.add(new Item(cursor.getString(0), cursor.getString(1), cursor.getString(2)));
         }
         cursor.close();
+    }
+
+    public void addChosenItem(int i) {
+        this.chosenItems.add(items.get(i));
     }
 
     public ArrayList<Item> getItems() {

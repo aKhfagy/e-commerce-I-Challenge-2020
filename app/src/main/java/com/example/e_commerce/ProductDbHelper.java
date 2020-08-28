@@ -157,6 +157,17 @@ class ProductDbHelper extends SQLiteOpenHelper {
         }
     }
 
+    public Cursor loadData(String key) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        try {
+            Cursor cursor = db.rawQuery("SELECT * FROM menu", null);
+            return cursor;
+        } catch (Exception ex) {
+            Log.d("FAILED", ex.getMessage());
+            return null;
+        }
+    }
+
     public Cursor loadData() {
         SQLiteDatabase db = this.getReadableDatabase();
         try {
