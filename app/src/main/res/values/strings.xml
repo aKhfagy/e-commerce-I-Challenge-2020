@@ -12,4 +12,7 @@
     <string name="forget_password">Forget Password</string>
     <string name="new_password">New Password</string>
     <string name="choose_your_birthday">Choose your birthday</string>
+    <string name="ItemName">Name</string>
+    <string name="Cost">Cost</string>
+    <string name="Size">size</string>
 </resources>
