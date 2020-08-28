@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -13,7 +11,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.e_commerce.login.LoginDbHelper;
@@ -94,7 +91,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     editor.putBoolean(User.REMEMBER_ME, checkBoxRememberMe.isChecked());
                     editor.apply();
                     clearFields();
-                    finish();
+                    startActivity(new Intent(LoginActivity.this, ChooseProductActivity.class));
                 }
                 else {
                     Toast.makeText(LoginActivity.this, "noooo", Toast.LENGTH_LONG).show();
@@ -111,29 +108,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
         }
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.profile_link:
-               // startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
-                return true;
-            case R.id.location_link:
-                startActivity(new Intent(LoginActivity.this, MapsActivity.class));
-                finish();
-                return true;
-            case R.id.logout_link:
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(User.REMEMBER_ME, false);
-                editor.apply();
-                return true;
-        }
-        return false;
     }
 }

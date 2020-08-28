@@ -1,12 +1,12 @@
 package com.example.e_commerce;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,6 +15,12 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.e_commerce.login.User;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -28,12 +34,12 @@ public class ChooseProductActivity extends AppCompatActivity {
     private ImageButton getVoiceInputBtn, btnFood, btnNuggets, btnSalads, btnHappyMeals, btnMcCafe;
     private ImageButton btnSweetTreats, btnBreakfastMeals, btnMorningPlatters;
     private int index = 0;
-
+    public SharedPreferences loginSharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_product);
-        getSupportActionBar().hide();
+
         readProducts();
         gridView = findViewById(R.id.product_grid_view);
         Button shoppingCart = findViewById(R.id.ShoppingCartButton);
@@ -57,6 +63,7 @@ public class ChooseProductActivity extends AppCompatActivity {
         cancel = findViewById(R.id.btn_cancel);
         ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
         gridView.setAdapter(productAdapter);
+        loginSharedPreferences = getSharedPreferences(User.PREFERENCE_NAME, Context.MODE_PRIVATE);
 
         btnFood.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -236,5 +243,30 @@ public class ChooseProductActivity extends AppCompatActivity {
                 search.setText(text);
             }
         }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.profile_link:
+                // startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
+                return true;
+            case R.id.location_link:
+                startActivity(new Intent(ChooseProductActivity.this, MapsActivity.class));
+
+                return true;
+            case R.id.logout_link:
+                SharedPreferences.Editor editor =loginSharedPreferences.edit();
+                editor.putBoolean(User.REMEMBER_ME, false);
+                editor.apply();
+                finish();
+                return true;
+        }
+        return false;
     }
 }

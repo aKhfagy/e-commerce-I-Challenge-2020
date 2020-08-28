@@ -10,13 +10,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.e_commerce.login.User;
 
 public class MainActivity extends AppCompatActivity {
-    private SharedPreferences sharedPreferences ;
+    public SharedPreferences loginSharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sharedPreferences = getSharedPreferences(User.PREFERENCE_NAME, Context.MODE_PRIVATE);
+        loginSharedPreferences = getSharedPreferences(User.PREFERENCE_NAME, Context.MODE_PRIVATE);
 
-        if (sharedPreferences.getBoolean(User.REMEMBER_ME, false)) {
+        if (loginSharedPreferences.getBoolean(User.REMEMBER_ME, false)) {
             startActivity(new Intent(MainActivity.this, ChooseProductActivity.class));
 
         }

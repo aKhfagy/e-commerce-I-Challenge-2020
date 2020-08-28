@@ -144,6 +144,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     databaseHelper.addUser(user);
                     clearFields();
                     Toast.makeText(RegisterActivity.this, "addedddddddddddd", Toast.LENGTH_LONG).show();
+                    finish();
                 }
                 break;
             case R.id.birthday_link:
