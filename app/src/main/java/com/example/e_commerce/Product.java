@@ -7,19 +7,15 @@ import java.util.ArrayList;
 
 public class Product {
     private final ArrayList<Item>[] items;
-    private final ArrayList<Item> chosenItems;
+    private static final ArrayList<Item> chosenItems = new ArrayList<>();
 
     public Product(ArrayList<Item> items) {
-
         this.items = new ArrayList[1];
-        this.chosenItems = new ArrayList<>();
 
         this.items[0] = items;
     }
 
     public Product(ProductDbHelper db) throws Exception {
-        this.chosenItems = new ArrayList();
-
         db.start();
 
         Cursor[] cursor = db.loadData();
@@ -58,7 +54,6 @@ public class Product {
         return items;
     }
 
-
     public ArrayList<Item> getChosenItems() {
         return chosenItems;
     }
@@ -73,7 +68,7 @@ public class Product {
         return ret;
     }
 
-    private class FindSearchResult {
+    private static class FindSearchResult {
 
         private String pattern, text;
 
@@ -121,7 +116,6 @@ public class Product {
 
             return false;
         }
-
     }
 
 }

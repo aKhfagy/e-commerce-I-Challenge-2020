@@ -1,6 +1,9 @@
 package com.example.e_commerce;
 
 import android.content.Context;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -30,37 +33,35 @@ public class ChooseProductActivity extends AppCompatActivity {
     private GridView gridView;
     private ShoppingCart shoppingCart;
     private TextView search;
-    private Button cancel, removeResults;
-    private ImageButton getVoiceInputBtn, btnFood, btnNuggets, btnSalads, btnHappyMeals, btnMcCafe;
-    private ImageButton btnSweetTreats, btnBreakfastMeals, btnMorningPlatters;
+    private Button removeResults;
     private int index = 0;
     public SharedPreferences loginSharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_product);
-
         readProducts();
         gridView = findViewById(R.id.product_grid_view);
-        Button shoppingCart = findViewById(R.id.ShoppingCartButton);
+        Button shoppingCart = findViewById(R.id.btn_shoping_cart);
         shoppingCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ChooseProductActivity.this,ShoppingCartActivity.class));
+                if(p.getChosenItems().size() == 0)
+                    startActivity(new Intent(ChooseProductActivity.this,ShoppingCartActivity.class));
             }
         });
-        btnMorningPlatters = findViewById(R.id.btn_morning_platters);
-        btnBreakfastMeals = findViewById(R.id.btn_breakfast_meals);
-        btnSweetTreats = findViewById(R.id.btn_sweet_treats);
-        btnMcCafe = findViewById(R.id.btn_mc_caffee);
-        btnHappyMeals = findViewById(R.id.btn_happy_meal);
-        btnFood = findViewById(R.id.btn_food);
-        btnNuggets = findViewById(R.id.btn_nuggets);
-        btnSalads = findViewById(R.id.btn_salads);
+        ImageButton btnMorningPlatters = findViewById(R.id.btn_morning_platters);
+        ImageButton btnBreakfastMeals = findViewById(R.id.btn_breakfast_meals);
+        ImageButton btnSweetTreats = findViewById(R.id.btn_sweet_treats);
+        ImageButton btnMcCafe = findViewById(R.id.btn_mc_caffee);
+        ImageButton btnHappyMeals = findViewById(R.id.btn_happy_meal);
+        ImageButton btnFood = findViewById(R.id.btn_food);
+        ImageButton btnNuggets = findViewById(R.id.btn_nuggets);
+        ImageButton btnSalads = findViewById(R.id.btn_salads);
         search = findViewById(R.id.txt_search_box);
-        getVoiceInputBtn = findViewById(R.id.btn_voice_input);
+        ImageButton getVoiceInputBtn = findViewById(R.id.btn_voice_input);
         removeResults = findViewById(R.id.btn_remove_search_results);
-        cancel = findViewById(R.id.btn_cancel);
+        Button cancel = findViewById(R.id.btn_cancel);
         ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
         gridView.setAdapter(productAdapter);
         loginSharedPreferences = getSharedPreferences(User.PREFERENCE_NAME, Context.MODE_PRIVATE);
@@ -157,7 +158,9 @@ public class ChooseProductActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 p.addChosenItem(i, index);
-                Toast.makeText(getApplicationContext(), p.getItems(index).get(i).getName(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), p.getItems(index).get(i).getName()
+                        + " is successfully added to the cart."
+                        + "\nItems in Cart " + p.getChosenItems().size(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -169,11 +172,10 @@ public class ChooseProductActivity extends AppCompatActivity {
                     if(motionEvent.getRawX() >=
                             (search.getRight() - search.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
                         String s = search.getText().toString();
-                        Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
                         ArrayList<Item> searched = p.getSearchedItems(index, s);
 
                         if(searched.size() == 0) {
-                            Toast.makeText(getApplicationContext(), "No Items Have That name", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "No Items Have That name", Toast.LENGTH_SHORT).show();
                         }
                         else {
                             p = new Product(searched);
@@ -218,8 +220,13 @@ public class ChooseProductActivity extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: Finish cancel button implementation
-
+                if(p.getChosenItems().size() > 0) {
+                    p.getChosenItems().clear();
+                    Toast.makeText(getApplicationContext(), "Removed all items from cart", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Cart is already empty!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -239,8 +246,13 @@ public class ChooseProductActivity extends AppCompatActivity {
         if (requestCode == 10) {
             if (resultCode == RESULT_OK && data != null) {
                 ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                String text = result.get(0);
-                search.setText(text);
+                try {
+                    assert result != null;
+                    String text = result.get(0);
+                    search.setText(text);
+                }catch (Exception ex) {
+                    Toast.makeText(getApplicationContext(), "Unexpected error, please try again.", Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }

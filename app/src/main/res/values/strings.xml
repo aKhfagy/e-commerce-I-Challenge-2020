@@ -24,5 +24,18 @@
     <string name="Size">size</string>
     <string name="search">Search</string>
     <string name="cancel_order">Cancel Order</string>
-    <string name="remove_search_results">Remove Search Results</string>
+    <string name="remove_search_results">Reset</string>
+    <string name="all_time_favorites">All Time Favorites</string>
+    <string name="nuggets_logo">Nuggets logo</string>
+    <string name="food_logo">Food logo</string>
+    <string name="happy_meal_logo">Happy meal logo</string>
+    <string name="salads_logo">Salads logo</string>
+    <string name="mccafe_logo">McCafe logo</string>
+    <string name="sweet_treats_logo">Sweet Treats logo</string>
+    <string name="breakfast_meals_logo">Breakfast meals logo</string>
+    <string name="morning_platters_logo">Morning platters logo</string>
+    <string name="take_voice_input_logo">Take voice input logo</string>
+    <string name="todo">TODO</string>
+    <string name="cart">Cart</string>
+    <string name="choose_product_label">Your Favourite Menu!</string>
 </resources>

@@ -22,57 +22,38 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toEndOf="@+id/btn_food"
-        app:layout_constraintTop_toBottomOf="@+id/txt_search_box" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:color/holo_red_dark" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="#C62828"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_mcd_imlovinit_blk_rgb"
-        tools:srcCompat="@drawable/ic_mcd_imlovinit_blk_rgb" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_search_box"
+        android:contentDescription="@string/todo" />
 
     <EditText
         android:id="@+id/txt_search_box"
         style="@style/Widget.AppCompat.EditText"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
+        android:drawableEnd="@drawable/ic_baseline_search_24"
         android:ems="10"
         android:hint="@string/search"
-        android:drawableEnd="@drawable/ic_baseline_search_24"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/btn_voice_input"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        android:text="All Time Favorites"
+        android:text="@string/all_time_favorites"
         android:textColor="#000000"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/txt_search_box"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_cancel"
@@ -82,10 +63,13 @@
         android:layout_marginStart="30dp"
         android:layout_marginBottom="16dp"
         android:text="@string/cancel_order"
+        android:textAlignment="center"
+        android:textAllCaps="false"
         android:textColor="#C62828"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/product_grid_view" />
+        app:layout_constraintTop_toBottomOf="@+id/product_grid_view"
+        tools:visibility="visible" />
 
     <ImageButton
         android:id="@+id/btn_food"
@@ -95,7 +79,8 @@
         android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/ic_baseline_fastfood_24" />
+        app:srcCompat="@drawable/ic_baseline_fastfood_24"
+        android:contentDescription="@string/food_logo" />
 
     <ImageButton
         android:id="@+id/btn_nuggets"
@@ -105,7 +90,8 @@
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_food"
-        app:srcCompat="@drawable/ic_baseline_fastfood_24" />
+        app:srcCompat="@drawable/ic_baseline_fastfood_24"
+        android:contentDescription="@string/nuggets_logo" />
 
     <ImageButton
         android:id="@+id/btn_salads"
@@ -115,7 +101,8 @@
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_nuggets"
-        app:srcCompat="@drawable/ic_baseline_fastfood_24" />
+        app:srcCompat="@drawable/ic_baseline_fastfood_24"
+        android:contentDescription="@string/salads_logo" />
 
     <ImageButton
         android:id="@+id/btn_happy_meal"
@@ -125,7 +112,8 @@
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_salads"
-        app:srcCompat="@drawable/ic_baseline_fastfood_24" />
+        app:srcCompat="@drawable/ic_baseline_fastfood_24"
+        android:contentDescription="@string/happy_meal_logo" />
 
     <ImageButton
         android:id="@+id/btn_mc_caffee"
@@ -135,7 +123,8 @@
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_happy_meal"
-        app:srcCompat="@drawable/ic_baseline_fastfood_24" />
+        app:srcCompat="@drawable/ic_baseline_fastfood_24"
+        android:contentDescription="@string/mccafe_logo" />
 
     <ImageButton
         android:id="@+id/btn_sweet_treats"
@@ -145,7 +134,8 @@
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_mc_caffee"
-        app:srcCompat="@drawable/ic_baseline_fastfood_24" />
+        app:srcCompat="@drawable/ic_baseline_fastfood_24"
+        android:contentDescription="@string/sweet_treats_logo" />
 
     <ImageButton
         android:id="@+id/btn_breakfast_meals"
@@ -155,7 +145,8 @@
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_sweet_treats"
-        app:srcCompat="@drawable/ic_baseline_fastfood_24" />
+        app:srcCompat="@drawable/ic_baseline_fastfood_24"
+        android:contentDescription="@string/breakfast_meals_logo" />
 
     <ImageButton
         android:id="@+id/btn_morning_platters"
@@ -165,17 +156,20 @@
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_breakfast_meals"
-        app:srcCompat="@drawable/ic_baseline_fastfood_24" />
+        app:srcCompat="@drawable/ic_baseline_fastfood_24"
+        android:contentDescription="@string/morning_platters_logo" />
 
     <ImageButton
         android:id="@+id/btn_voice_input"
         style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/take_voice_input_logo"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_mic_24" />
 
     <Button
@@ -183,26 +177,35 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="29dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="16dp"
         android:text="@string/remove_search_results"
+        android:textAlignment="center"
+        android:textAllCaps="false"
         android:textColor="#4527A0"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_shoping_cart"
         app:layout_constraintStart_toEndOf="@+id/btn_cancel"
         app:layout_constraintTop_toBottomOf="@+id/product_grid_view" />
 
     <Button
-        android:id="@+id/ShoppingCartButton"
-        android:layout_width="match_parent"
+        android:id="@+id/btn_shoping_cart"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="@string/cart"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#F57C00"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/product_grid_view"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/product_grid_view" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
