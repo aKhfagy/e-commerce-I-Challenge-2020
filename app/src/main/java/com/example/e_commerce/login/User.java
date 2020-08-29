@@ -3,8 +3,6 @@ package com.example.e_commerce.login;
 public class User {
 
     private String username,password,userEmail,birthdate;
-    public static final String PREFERENCE_NAME = "com.example.sessionsix";
-    public static final String REMEMBER_ME = "remember_me";
     private int id;
 
     public User() {

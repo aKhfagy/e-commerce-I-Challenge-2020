@@ -29,7 +29,7 @@ public class AccountActivity  extends AppCompatActivity {
 
     private List<ViewPagerItem> getViewPagerItems() {
         List<ViewPagerItem> viewPagerItems = new ArrayList<>();
-        viewPagerItems.add(new ViewPagerItem(getString(R.string.tab_text_1), ProfileFragment.newInstance()));
+        viewPagerItems.add(new ViewPagerItem(getString(R.string.tab_text_1), ProfileFragment.newInstance(AccountActivity.this)));
         //viewPagerItems.add(new ViewPagerItem(getString(R.string.tab_text_2), CameraFragment.newInstance()));
 
         return viewPagerItems;

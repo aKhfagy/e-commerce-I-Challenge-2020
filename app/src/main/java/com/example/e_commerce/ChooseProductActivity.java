@@ -21,7 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.e_commerce.login.User;
+import com.example.e_commerce.login.Constants;
 import com.example.e_commerce.ui.main.AccountActivity;
 
 import java.util.ArrayList;
@@ -63,7 +63,7 @@ public class ChooseProductActivity extends AppCompatActivity {
         Button cancel = findViewById(R.id.btn_cancel);
         ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
         gridView.setAdapter(productAdapter);
-        loginSharedPreferences = getSharedPreferences(User.PREFERENCE_NAME, Context.MODE_PRIVATE);
+        loginSharedPreferences = getSharedPreferences(Constants.PREFERENCE_NAME, Context.MODE_PRIVATE);
 
         btnFood.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -274,7 +274,11 @@ public class ChooseProductActivity extends AppCompatActivity {
                 return true;
             case R.id.logout_link:
                 SharedPreferences.Editor editor =loginSharedPreferences.edit();
-                editor.putBoolean(User.REMEMBER_ME, false);
+                editor.putString(Constants.UserTable.USERNAME,"");
+                editor.putString(Constants.UserTable.EMAIL, "");
+                editor.putString(Constants.UserTable.PASSWORD, "");
+                editor.putString(Constants.UserTable.BIRTHDATE, "");
+                editor.putBoolean(Constants.REMEMBER_ME, false);
                 editor.apply();
                 finish();
                 return true;
