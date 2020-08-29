@@ -107,7 +107,7 @@ class ProductDbHelper extends SQLiteOpenHelper {
             checkDB.close();
 
         }
-        return checkDB != null ? true : false;
+        return checkDB != null;
     }
 
     public void copyDB() throws IOException{

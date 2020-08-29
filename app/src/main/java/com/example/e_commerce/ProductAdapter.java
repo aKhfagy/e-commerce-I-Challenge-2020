@@ -27,7 +27,7 @@ public class ProductAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return product.getItems(itemIndex).get(position);
     }
 
     @Override
