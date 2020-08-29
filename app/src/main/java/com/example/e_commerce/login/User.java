@@ -7,6 +7,17 @@ public class User {
     public static final String REMEMBER_ME = "remember_me";
     private int id;
 
+    public User() {
+    }
+
+    public User(int id, String username, String userEmail, String password, String birthdate ) {
+        this.username = username;
+        this.password = password;
+        this.userEmail = userEmail;
+        this.birthdate = birthdate;
+        this.id = id;
+    }
+
     public String getBirthdate() {
         return birthdate;
     }

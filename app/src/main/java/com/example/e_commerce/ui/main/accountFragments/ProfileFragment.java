@@ -1,0 +1,43 @@
+package com.example.e_commerce.ui.main.accountFragments;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+
+import com.example.e_commerce.R;
+import com.example.e_commerce.login.LoginDbHelper;
+import com.example.e_commerce.login.User;
+
+public class ProfileFragment extends Fragment  {
+    TextView userName,userEmail,userPassword, birthdate;
+    public ProfileFragment() {
+        // Required empty public constructor
+    }
+
+    public static ProfileFragment newInstance() {
+        return new ProfileFragment();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        userName = (TextView) view.findViewById(R.id.edt_User_name);
+        userEmail = (TextView) view.findViewById(R.id.edt_User_email);
+        userPassword = (TextView) view.findViewById(R.id.edt_User_Password);
+        birthdate = (TextView) view.findViewById(R.id.birthday_link);
+        User user=LoginDbHelper.getUserInfo();
+        System.out.println(user.getUsername());
+        userName.setText(user.getUsername());
+        userEmail.setText(user.getUserEmail());
+        userPassword.setText(user.getPassword());
+        birthdate.setText(user.getBirthdate());
+        return view;
+    }
+
+}

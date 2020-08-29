@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class LoginDbHelper extends SQLiteOpenHelper {
     private SQLiteDatabase sqLiteDatabase;
-
+    public static User user = new User(  );
     public LoginDbHelper(Context context) {
         super(context, Users.DATABASE_NAME, null, 1);
     }
@@ -35,21 +35,8 @@ public class LoginDbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.close();
     }
 
-
-    public boolean isUserExists(String email, String password) {
-            SQLiteDatabase sql = this.getReadableDatabase();
-            String selectQuery = "SELECT *  FROM " + Users.UserTable.TABLE_NAME + " WHERE " + Users.UserTable.EMAIL + "= '" + email + "' AND " + Users.UserTable.PASSWORD + "= '" + password + "' ";
-            Cursor cursor = sql.rawQuery(selectQuery, null);
-            if (cursor.getCount() > 0) {
-                cursor.close();
-                close();
-                return true;
-
-            } else {
-                cursor.close();
-                close();
-                return false;
-            }
+    public static User getUserInfo() {
+        return user;
     }
     public boolean isEmailExists(String email) {
         SQLiteDatabase sql=this.getReadableDatabase();
@@ -73,6 +60,29 @@ public class LoginDbHelper extends SQLiteOpenHelper {
         sqLiteDatabase = this.getWritableDatabase();
         sqLiteDatabase.update(Users.UserTable.TABLE_NAME, row, Users.UserTable.EMAIL + " = ?",new String[] { email });
         sqLiteDatabase.close();
+    }
+
+    public boolean isUserExists(String email, String password) {
+            SQLiteDatabase sql = this.getReadableDatabase();
+            String selectQuery = "SELECT *  FROM " + Users.UserTable.TABLE_NAME + " WHERE " + Users.UserTable.EMAIL + "= '" + email + "' AND " + Users.UserTable.PASSWORD + "= '" + password + "' ";
+            Cursor cursor = sql.rawQuery(selectQuery, null);
+            if (cursor.getCount() > 0) {
+                if (cursor.moveToFirst()) {
+                    //user.setId(cursor.getInt(0));
+                    user.setUsername(cursor.getString(cursor.getColumnIndex(Users.UserTable.USERNAME)));
+                    user.setUserEmail(cursor.getString(cursor.getColumnIndex(Users.UserTable.EMAIL)));
+                    user.setPassword(cursor.getString(cursor.getColumnIndex(Users.UserTable.PASSWORD)));
+                    user.setBirthdate(cursor.getString(cursor.getColumnIndex(Users.UserTable.BIRTHDATE)));
+                }
+                cursor.close();
+                close();
+                return true;
+
+            } else {
+                cursor.close();
+                close();
+                return false;
+            }
     }
 
 }
