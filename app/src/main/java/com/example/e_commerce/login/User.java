@@ -3,9 +3,18 @@ package com.example.e_commerce.login;
 public class User {
 
     private String username,password,userEmail,birthdate;
-    public static final String PREFERENCE_NAME = "com.example.sessionsix";
-    public static final String REMEMBER_ME = "remember_me";
     private int id;
+
+    public User() {
+    }
+
+    public User(int id, String username, String userEmail, String password, String birthdate ) {
+        this.username = username;
+        this.password = password;
+        this.userEmail = userEmail;
+        this.birthdate = birthdate;
+        this.id = id;
+    }
 
     public String getBirthdate() {
         return birthdate;
