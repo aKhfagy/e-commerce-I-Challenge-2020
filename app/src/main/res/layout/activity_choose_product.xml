@@ -27,30 +27,16 @@
     <EditText
         android:id="@+id/txt_search_box"
         style="@style/Widget.AppCompat.EditText"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="5dp"
+        android:layout_width="247dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
         android:drawableEnd="@drawable/ic_baseline_search_24"
         android:ems="10"
         android:hint="@string/search"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/btn_voice_input"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:text="@string/all_time_favorites"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/txt_search_box"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -123,9 +109,10 @@
         android:id="@+id/rv_category_buttons"
         android:layout_width="80dp"
         android:layout_height="400dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="44dp"
         app:layout_constraintEnd_toStartOf="@+id/product_grid_view"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_search_box" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

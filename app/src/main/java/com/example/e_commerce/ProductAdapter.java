@@ -40,8 +40,6 @@ public class ProductAdapter extends BaseAdapter {
         convertView = inflater.inflate(R.layout.product_grid_adapter, null);
         TextView name = convertView.findViewById(R.id.product_name);
         name.setText(product.get(position).getName());
-        TextView size = convertView.findViewById(R.id.product_size);
-        size.setText(product.get(position).getSize());
         TextView price = convertView.findViewById(R.id.product_price);
         price.setText(product.get(position).getCost());
         return convertView;

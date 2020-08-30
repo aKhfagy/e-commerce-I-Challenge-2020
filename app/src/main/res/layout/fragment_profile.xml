@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:aandroid="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.main.accountFragments.ProfileFragment">
 
     <LinearLayout
@@ -16,7 +17,6 @@
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
         android:text="@string/name"
-        android:textColor="@android:color/black"
         />
 
     <TextView
@@ -32,7 +32,6 @@
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
         android:text="@string/email"
-        android:textColor="@android:color/black"
         />
 
     <TextView
@@ -48,7 +47,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/password"
-        android:textColor="@android:color/black"
         />
 
     <TextView
@@ -62,16 +60,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Birthday"
-            android:textColor="@android:color/black"
-            />
+            android:text="@string/birthday"
+             />
     <TextView
         android:id="@+id/birthday_link"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/choose_your_birthday"
-        android:textColor="@color/colorTextHint"
         android:textSize="16sp"
         />
     </LinearLayout>
