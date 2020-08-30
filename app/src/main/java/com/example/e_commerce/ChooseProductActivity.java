@@ -218,14 +218,14 @@ public class ChooseProductActivity extends AppCompatActivity implements Category
 
     private void setCategoryButtonItems() {
         categoryButtonItems = new ArrayList<>();
-        categoryButtonItems.add(new CategoryButtonItem(R.drawable.ic_baseline_fastfood_24));
-        categoryButtonItems.add(new CategoryButtonItem(R.drawable.ic_baseline_fastfood_24));
-        categoryButtonItems.add(new CategoryButtonItem(R.drawable.ic_baseline_fastfood_24));
-        categoryButtonItems.add(new CategoryButtonItem(R.drawable.ic_baseline_fastfood_24));
-        categoryButtonItems.add(new CategoryButtonItem(R.drawable.ic_baseline_fastfood_24));
-        categoryButtonItems.add(new CategoryButtonItem(R.drawable.ic_baseline_fastfood_24));
-        categoryButtonItems.add(new CategoryButtonItem(R.drawable.ic_baseline_fastfood_24));
-        categoryButtonItems.add(new CategoryButtonItem(R.drawable.ic_baseline_fastfood_24));
+        categoryButtonItems.add(new CategoryButtonItem(R.drawable.food));
+        categoryButtonItems.add(new CategoryButtonItem(R.drawable.nuggets));
+        categoryButtonItems.add(new CategoryButtonItem(R.drawable.salad));
+        categoryButtonItems.add(new CategoryButtonItem(R.drawable.happy_meal));
+        categoryButtonItems.add(new CategoryButtonItem(R.drawable.drinks));
+        categoryButtonItems.add(new CategoryButtonItem(R.drawable.cone));
+        categoryButtonItems.add(new CategoryButtonItem(R.drawable.breakfast));
+        categoryButtonItems.add(new CategoryButtonItem(R.drawable.platter));
     }
 
     @Override

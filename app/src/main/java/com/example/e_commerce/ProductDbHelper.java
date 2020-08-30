@@ -30,7 +30,7 @@ class ProductDbHelper extends SQLiteOpenHelper {
     };
 
     public ProductDbHelper(Context context) {
-        super(context, DB_NAME, null, 3);
+        super(context, DB_NAME, null, 5);
         this.context = context;
     }
 
