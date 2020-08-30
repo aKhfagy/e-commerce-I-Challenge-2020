@@ -264,8 +264,8 @@ public class ChooseProductActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.profile_link:
-                // startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
+            case R.id.account_link:
+                 startActivity(new Intent(ChooseProductActivity.this, AccountActivity.class));
                 return true;
             case R.id.location_link:
                 startActivity(new Intent(ChooseProductActivity.this, MapsActivity.class));

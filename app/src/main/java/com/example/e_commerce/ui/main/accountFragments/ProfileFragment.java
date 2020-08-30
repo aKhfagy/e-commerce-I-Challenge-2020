@@ -20,14 +20,12 @@ public class ProfileFragment extends Fragment  {
         // Required empty public constructor
     }
 
-    public static ProfileFragment newInstance(Context context) {
-        sharedPreferences= context.getSharedPreferences(Constants.PREFERENCE_NAME, Context.MODE_PRIVATE);
+    public static ProfileFragment newInstance() {
         return new ProfileFragment();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         userName = (TextView) view.findViewById(R.id.edt_User_name);
@@ -35,6 +33,7 @@ public class ProfileFragment extends Fragment  {
         userPassword = (TextView) view.findViewById(R.id.edt_User_Password);
         birthdate = (TextView) view.findViewById(R.id.birthday_link);
 
+        sharedPreferences= container.getContext().getSharedPreferences(Constants.PREFERENCE_NAME, Context.MODE_PRIVATE);
         userName.setText(sharedPreferences.getString(Constants.UserTable.USERNAME,""));
         userEmail.setText(sharedPreferences.getString(Constants.UserTable.EMAIL,""));
         userPassword.setText(sharedPreferences.getString(Constants.UserTable.PASSWORD,""));
