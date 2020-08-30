@@ -22,6 +22,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.e_commerce.login.Constants;
+import com.example.e_commerce.login.User;
 import com.example.e_commerce.ui.main.AccountActivity;
 
 import java.util.ArrayList;
@@ -61,7 +62,7 @@ public class ChooseProductActivity extends AppCompatActivity {
         removeResults = findViewById(R.id.btn_remove_search_results);
         Button cancel = findViewById(R.id.btn_cancel);
         setAdapterList();
-        loginSharedPreferences = getSharedPreferences(User.PREFERENCE_NAME, Context.MODE_PRIVATE);
+        loginSharedPreferences = getSharedPreferences(Constants.PREFERENCE_NAME, Context.MODE_PRIVATE);
 
         btnFood.setOnClickListener(new View.OnClickListener() {
             @Override
