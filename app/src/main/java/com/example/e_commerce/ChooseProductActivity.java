@@ -62,8 +62,7 @@ public class ChooseProductActivity extends AppCompatActivity {
         ImageButton getVoiceInputBtn = findViewById(R.id.btn_voice_input);
         removeResults = findViewById(R.id.btn_remove_search_results);
         Button cancel = findViewById(R.id.btn_cancel);
-        ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
-        gridView.setAdapter(productAdapter);
+        setAdapterList();
         loginSharedPreferences = getSharedPreferences(User.PREFERENCE_NAME, Context.MODE_PRIVATE);
 
         btnFood.setOnClickListener(new View.OnClickListener() {
@@ -72,8 +71,7 @@ public class ChooseProductActivity extends AppCompatActivity {
                 if(p.getItems().length == 1)
                     readProducts();
                 index = 0;
-                ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
-                gridView.setAdapter(productAdapter);
+                setAdapterList();
             }
         });
 
@@ -83,8 +81,7 @@ public class ChooseProductActivity extends AppCompatActivity {
                 if(p.getItems().length == 1)
                     readProducts();
                 index = 1;
-                ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
-                gridView.setAdapter(productAdapter);
+                setAdapterList();
             }
         });
 
@@ -94,8 +91,7 @@ public class ChooseProductActivity extends AppCompatActivity {
                 if(p.getItems().length == 1)
                     readProducts();
                 index = 2;
-                ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
-                gridView.setAdapter(productAdapter);
+                setAdapterList();
             }
         });
 
@@ -105,8 +101,7 @@ public class ChooseProductActivity extends AppCompatActivity {
                 if(p.getItems().length == 1)
                     readProducts();
                 index = 3;
-                ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
-                gridView.setAdapter(productAdapter);
+                setAdapterList();
             }
         });
 
@@ -116,8 +111,7 @@ public class ChooseProductActivity extends AppCompatActivity {
                 if(p.getItems().length == 1)
                     readProducts();
                 index = 4;
-                ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
-                gridView.setAdapter(productAdapter);
+                setAdapterList();
             }
         });
 
@@ -127,8 +121,7 @@ public class ChooseProductActivity extends AppCompatActivity {
                 if(p.getItems().length == 1)
                     readProducts();
                 index = 5;
-                ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
-                gridView.setAdapter(productAdapter);
+                setAdapterList();
             }
         });
 
@@ -138,8 +131,7 @@ public class ChooseProductActivity extends AppCompatActivity {
                 if(p.getItems().length == 1)
                     readProducts();
                 index = 6;
-                ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
-                gridView.setAdapter(productAdapter);
+                setAdapterList();
             }
         });
 
@@ -149,8 +141,7 @@ public class ChooseProductActivity extends AppCompatActivity {
                 if(p.getItems().length == 1)
                     readProducts();
                 index = 7;
-                ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
-                gridView.setAdapter(productAdapter);
+                setAdapterList();
             }
         });
 
@@ -180,8 +171,7 @@ public class ChooseProductActivity extends AppCompatActivity {
                         else {
                             p = new Product(searched);
                             index = 0;
-                            ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
-                            gridView.setAdapter(productAdapter);
+                            setAdapterList();
                             removeResults.setVisibility(View.VISIBLE);
                         }
 
@@ -196,8 +186,7 @@ public class ChooseProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 readProducts();
-                ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
-                gridView.setAdapter(productAdapter);
+                setAdapterList();
                 removeResults.setVisibility(View.INVISIBLE);
             }
         });
@@ -280,5 +269,10 @@ public class ChooseProductActivity extends AppCompatActivity {
                 return true;
         }
         return false;
+    }
+
+    private void setAdapterList() {
+        ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p.getItems(0));
+        gridView.setAdapter(productAdapter);
     }
 }

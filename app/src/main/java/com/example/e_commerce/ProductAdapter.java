@@ -7,27 +7,27 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class ProductAdapter extends BaseAdapter {
-    private final Product product;
+    private final ArrayList<Item> product;
     private final Context context;
     private LayoutInflater inflater;
-    private int itemIndex;
 
-    public ProductAdapter(Context context, Product product, int itemIndex) {
+    public ProductAdapter(Context context, ArrayList<Item> product) {
         this.product = product;
         this.context = context;
         inflater = LayoutInflater.from(this.context);
-        this.itemIndex = itemIndex;
     }
 
     @Override
     public int getCount() {
-        return product.getItems(itemIndex).size();
+        return product.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return product.getItems(itemIndex).get(position);
+        return product.get(position);
     }
 
     @Override
@@ -39,11 +39,11 @@ public class ProductAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = inflater.inflate(R.layout.product_grid_adapter, null);
         TextView name = convertView.findViewById(R.id.product_name);
-        name.setText(product.getItems(itemIndex).get(position).getName());
+        name.setText(product.get(position).getName());
         TextView size = convertView.findViewById(R.id.product_size);
-        size.setText(product.getItems(itemIndex).get(position).getSize());
+        size.setText(product.get(position).getSize());
         TextView price = convertView.findViewById(R.id.product_price);
-        price.setText(product.getItems(itemIndex).get(position).getCost());
+        price.setText(product.get(position).getCost());
         return convertView;
     }
 }
