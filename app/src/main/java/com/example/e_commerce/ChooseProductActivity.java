@@ -35,7 +35,7 @@ public class ChooseProductActivity extends AppCompatActivity implements Category
     private GridView gridView;
     private TextView search;
     private Button removeResults;
-    private int index = 0;
+    private int index = 0, dummy = 0;
     public SharedPreferences loginSharedPreferences;
     private ArrayList<CategoryButtonItem> categoryButtonItems;
     private RecyclerView recyclerView;
@@ -70,6 +70,8 @@ public class ChooseProductActivity extends AppCompatActivity implements Category
         recyclerView.addOnItemTouchListener(new CategoryButtonClickListener(this, recyclerView, new CategoryButtonClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                if(p.getItems().length == 1)
+                    readProducts();
                 setAdapterList(position);
             }
 
@@ -102,7 +104,8 @@ public class ChooseProductActivity extends AppCompatActivity implements Category
                         }
                         else {
                             p = new Product(searched);
-                            setAdapterList(index);
+                            dummy = index;
+                            setAdapterList(0);
                             removeResults.setVisibility(View.VISIBLE);
                         }
 
@@ -117,6 +120,7 @@ public class ChooseProductActivity extends AppCompatActivity implements Category
             @Override
             public void onClick(View view) {
                 readProducts();
+                index = dummy;
                 setAdapterList(index);
                 removeResults.setVisibility(View.INVISIBLE);
             }

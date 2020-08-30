@@ -4,14 +4,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import java.io.InputStream;
 
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-    ImageView bmImage;
+    ImageButton bmImage;
 
-    public DownloadImageTask(ImageView bmImage) {
+    public DownloadImageTask(ImageButton bmImage) {
         this.bmImage = bmImage;
     }
 
