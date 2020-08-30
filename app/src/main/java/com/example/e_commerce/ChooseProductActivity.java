@@ -1,9 +1,6 @@
 package com.example.e_commerce;
 
 import android.content.Context;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -29,25 +26,26 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class ChooseProductActivity extends AppCompatActivity {
+    public SharedPreferences loginSharedPreferences;
     private Product p;
     private GridView gridView;
-    private ShoppingCart shoppingCart;
     private TextView search;
     private Button removeResults;
     private int index = 0;
-    public SharedPreferences loginSharedPreferences;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_product);
         readProducts();
         gridView = findViewById(R.id.product_grid_view);
-        Button shoppingCart = findViewById(R.id.btn_shoping_cart);
+        final Button shoppingCart = findViewById(R.id.btn_shoping_cart);
         shoppingCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(p.getChosenItems().size() == 0)
-                    startActivity(new Intent(ChooseProductActivity.this,ShoppingCartActivity.class));
+                Intent shoppingCartIntent = new Intent(ChooseProductActivity.this, ShoppingCartActivity.class);
+                startActivity(shoppingCartIntent);
             }
         });
         ImageButton btnMorningPlatters = findViewById(R.id.btn_morning_platters);
@@ -69,7 +67,7 @@ public class ChooseProductActivity extends AppCompatActivity {
         btnFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(p.getItems().length == 1)
+                if (p.getItems().length == 1)
                     readProducts();
                 index = 0;
                 ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
@@ -80,7 +78,7 @@ public class ChooseProductActivity extends AppCompatActivity {
         btnNuggets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(p.getItems().length == 1)
+                if (p.getItems().length == 1)
                     readProducts();
                 index = 1;
                 ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
@@ -91,7 +89,7 @@ public class ChooseProductActivity extends AppCompatActivity {
         btnSalads.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(p.getItems().length == 1)
+                if (p.getItems().length == 1)
                     readProducts();
                 index = 2;
                 ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
@@ -102,7 +100,7 @@ public class ChooseProductActivity extends AppCompatActivity {
         btnHappyMeals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(p.getItems().length == 1)
+                if (p.getItems().length == 1)
                     readProducts();
                 index = 3;
                 ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
@@ -113,7 +111,7 @@ public class ChooseProductActivity extends AppCompatActivity {
         btnMcCafe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(p.getItems().length == 1)
+                if (p.getItems().length == 1)
                     readProducts();
                 index = 4;
                 ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
@@ -124,7 +122,7 @@ public class ChooseProductActivity extends AppCompatActivity {
         btnSweetTreats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(p.getItems().length == 1)
+                if (p.getItems().length == 1)
                     readProducts();
                 index = 5;
                 ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
@@ -135,7 +133,7 @@ public class ChooseProductActivity extends AppCompatActivity {
         btnBreakfastMeals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(p.getItems().length == 1)
+                if (p.getItems().length == 1)
                     readProducts();
                 index = 6;
                 ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
@@ -146,7 +144,7 @@ public class ChooseProductActivity extends AppCompatActivity {
         btnMorningPlatters.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(p.getItems().length == 1)
+                if (p.getItems().length == 1)
                     readProducts();
                 index = 7;
                 ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
@@ -168,16 +166,15 @@ public class ChooseProductActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 final int DRAWABLE_RIGHT = 2;
-                if(motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                    if(motionEvent.getRawX() >=
+                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    if (motionEvent.getRawX() >=
                             (search.getRight() - search.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
                         String s = search.getText().toString();
                         ArrayList<Item> searched = p.getSearchedItems(index, s);
 
-                        if(searched.size() == 0) {
+                        if (searched.size() == 0) {
                             Toast.makeText(getApplicationContext(), "No Items Have That name", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
+                        } else {
                             p = new Product(searched);
                             index = 0;
                             ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p, index);
@@ -208,11 +205,11 @@ public class ChooseProductActivity extends AppCompatActivity {
                 Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.ENGLISH);
-                if(intent.resolveActivity(getPackageManager()) != null)
+                if (intent.resolveActivity(getPackageManager()) != null)
                     startActivityForResult(intent, 10);
                 else
                     Toast.makeText(getApplicationContext(),
-                            "Your device doesn\'t support taking speech input..",
+                            "Your device doesn't support taking speech input..",
                             Toast.LENGTH_LONG).show();
             }
         });
@@ -220,16 +217,16 @@ public class ChooseProductActivity extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(p.getChosenItems().size() > 0) {
+                if (p.getChosenItems().size() > 0) {
                     p.getChosenItems().clear();
                     Toast.makeText(getApplicationContext(), "Removed all items from cart", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     Toast.makeText(getApplicationContext(), "Cart is already empty!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
+
 
     public void readProducts() {
         ProductDbHelper db = new ProductDbHelper(getApplicationContext());
@@ -250,12 +247,13 @@ public class ChooseProductActivity extends AppCompatActivity {
                     assert result != null;
                     String text = result.get(0);
                     search.setText(text);
-                }catch (Exception ex) {
+                } catch (Exception ex) {
                     Toast.makeText(getApplicationContext(), "Unexpected error, please try again.", Toast.LENGTH_SHORT).show();
                 }
             }
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -273,7 +271,7 @@ public class ChooseProductActivity extends AppCompatActivity {
 
                 return true;
             case R.id.logout_link:
-                SharedPreferences.Editor editor =loginSharedPreferences.edit();
+                SharedPreferences.Editor editor = loginSharedPreferences.edit();
                 editor.putBoolean(User.REMEMBER_ME, false);
                 editor.apply();
                 finish();

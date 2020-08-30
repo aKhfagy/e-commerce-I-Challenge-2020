@@ -7,11 +7,10 @@ import java.util.ArrayList;
 
 public class Product {
     private final ArrayList<Item>[] items;
-    private static final ArrayList<Item> chosenItems = new ArrayList<>();
+    public static final ArrayList<Item> chosenItems = new ArrayList<>();
 
     public Product(ArrayList<Item> items) {
         this.items = new ArrayList[1];
-
         this.items[0] = items;
     }
 
@@ -36,7 +35,7 @@ public class Product {
     public void load(Cursor[] cursors) {
         for(int i = 0; i < cursors.length; ++i) {
             while (cursors[i].moveToNext()) {
-                items[i].add(new Item(cursors[i].getString(0), cursors[i].getString(1), cursors[i].getString(2)));
+                items[i].add(new Item(cursors[i].getString(0), cursors[i].getString(2), cursors[i].getString(1)));
             }
             cursors[i].close();
         }
