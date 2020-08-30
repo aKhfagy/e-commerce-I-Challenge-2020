@@ -20,6 +20,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.e_commerce.login.Constants;
 import com.example.e_commerce.login.User;
@@ -28,17 +30,23 @@ import com.example.e_commerce.ui.main.AccountActivity;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class ChooseProductActivity extends AppCompatActivity {
+public class ChooseProductActivity extends AppCompatActivity implements CategoryButtonEvent {
     private Product p;
     private GridView gridView;
     private TextView search;
     private Button removeResults;
     private int index = 0;
     public SharedPreferences loginSharedPreferences;
+    private ArrayList<CategoryButtonItem> categoryButtonItems;
+    private RecyclerView recyclerView;
+    private CategoryButtonAdapter categoryButtonAdapter;
+
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_product);
+        setCategoryButtonItems();
         readProducts();
         gridView = findViewById(R.id.product_grid_view);
         final Button shoppingCart = findViewById(R.id.btn_shoping_cart);
@@ -49,108 +57,32 @@ public class ChooseProductActivity extends AppCompatActivity {
                 startActivity(shoppingCartIntent);
             }
         });
-        ImageButton btnMorningPlatters = findViewById(R.id.btn_morning_platters);
-        ImageButton btnBreakfastMeals = findViewById(R.id.btn_breakfast_meals);
-        ImageButton btnSweetTreats = findViewById(R.id.btn_sweet_treats);
-        ImageButton btnMcCafe = findViewById(R.id.btn_mc_caffee);
-        ImageButton btnHappyMeals = findViewById(R.id.btn_happy_meal);
-        ImageButton btnFood = findViewById(R.id.btn_food);
-        ImageButton btnNuggets = findViewById(R.id.btn_nuggets);
-        ImageButton btnSalads = findViewById(R.id.btn_salads);
         search = findViewById(R.id.txt_search_box);
+        recyclerView = findViewById(R.id.rv_category_buttons);
         ImageButton getVoiceInputBtn = findViewById(R.id.btn_voice_input);
         removeResults = findViewById(R.id.btn_remove_search_results);
         Button cancel = findViewById(R.id.btn_cancel);
-        setAdapterList();
+        setAdapterList(index);
         loginSharedPreferences = getSharedPreferences(Constants.PREFERENCE_NAME, Context.MODE_PRIVATE);
-
-        btnFood.setOnClickListener(new View.OnClickListener() {
+        categoryButtonAdapter = new CategoryButtonAdapter(getApplicationContext(), categoryButtonItems, this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(categoryButtonAdapter);
+        recyclerView.addOnItemTouchListener(new CategoryButtonClickListener(this, recyclerView, new CategoryButtonClickListener.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                if(p.getItems().length == 1)
-                    readProducts();
-                index = 0;
-                setAdapterList();
+            public void onItemClick(View view, int position) {
+                setAdapterList(position);
             }
-        });
 
-        btnNuggets.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                if(p.getItems().length == 1)
-                    readProducts();
-                index = 1;
-                setAdapterList();
-            }
-        });
+            public void onLongItemClick(View view, int position) {
 
-        btnSalads.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(p.getItems().length == 1)
-                    readProducts();
-                index = 2;
-                setAdapterList();
             }
-        });
-
-        btnHappyMeals.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(p.getItems().length == 1)
-                    readProducts();
-                index = 3;
-                setAdapterList();
-            }
-        });
-
-        btnMcCafe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(p.getItems().length == 1)
-                    readProducts();
-                index = 4;
-                setAdapterList();
-            }
-        });
-
-        btnSweetTreats.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(p.getItems().length == 1)
-                    readProducts();
-                index = 5;
-                setAdapterList();
-            }
-        });
-
-        btnBreakfastMeals.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(p.getItems().length == 1)
-                    readProducts();
-                index = 6;
-                setAdapterList();
-            }
-        });
-
-        btnMorningPlatters.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(p.getItems().length == 1)
-                    readProducts();
-                index = 7;
-                setAdapterList();
-            }
-        });
-
+        }));
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 p.addChosenItem(i, index);
-                Toast.makeText(getApplicationContext(), p.getItems(index).get(i).getName()
-                        + " is successfully added to the cart."
-                        + "\nItems in Cart " + p.getChosenItems().size(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Item is successfully added to the cart.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -170,8 +102,7 @@ public class ChooseProductActivity extends AppCompatActivity {
                         }
                         else {
                             p = new Product(searched);
-                            index = 0;
-                            setAdapterList();
+                            setAdapterList(index);
                             removeResults.setVisibility(View.VISIBLE);
                         }
 
@@ -186,7 +117,7 @@ public class ChooseProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 readProducts();
-                setAdapterList();
+                setAdapterList(index);
                 removeResults.setVisibility(View.INVISIBLE);
             }
         });
@@ -275,8 +206,36 @@ public class ChooseProductActivity extends AppCompatActivity {
         return false;
     }
 
-    private void setAdapterList() {
-        ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p.getItems(0));
+    public void setAdapterList(int pos) {
+        index = pos;
+        ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), p.getItems(index));
         gridView.setAdapter(productAdapter);
+    }
+
+    private void setCategoryButtonItems() {
+        categoryButtonItems = new ArrayList<>();
+        categoryButtonItems.add(new CategoryButtonItem(R.drawable.ic_baseline_fastfood_24));
+        categoryButtonItems.add(new CategoryButtonItem(R.drawable.ic_baseline_fastfood_24));
+        categoryButtonItems.add(new CategoryButtonItem(R.drawable.ic_baseline_fastfood_24));
+        categoryButtonItems.add(new CategoryButtonItem(R.drawable.ic_baseline_fastfood_24));
+        categoryButtonItems.add(new CategoryButtonItem(R.drawable.ic_baseline_fastfood_24));
+        categoryButtonItems.add(new CategoryButtonItem(R.drawable.ic_baseline_fastfood_24));
+        categoryButtonItems.add(new CategoryButtonItem(R.drawable.ic_baseline_fastfood_24));
+        categoryButtonItems.add(new CategoryButtonItem(R.drawable.ic_baseline_fastfood_24));
+    }
+
+    @Override
+    public void onCategoryButtonClick(int position) {
+        CategoryButtonItem categoryButtonItem = categoryButtonItems.get(position);
+    }
+
+    @Override
+    public void update(int position) {
+        CategoryButtonItem categoryButtonItem = categoryButtonItems.get(position);
+    }
+
+    @Override
+    public void delete(int position) {
+        CategoryButtonItem categoryButtonItem = categoryButtonItems.get(position);
     }
 }

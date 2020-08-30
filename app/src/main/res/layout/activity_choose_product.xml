@@ -11,19 +11,18 @@
         android:id="@+id/product_grid_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="70dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
+        android:contentDescription="@string/todo"
         android:horizontalSpacing="10dp"
         android:numColumns="3"
         android:verticalSpacing="10dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_cancel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toEndOf="@+id/btn_food"
-        app:layout_constraintTop_toBottomOf="@+id/txt_search_box"
-        android:contentDescription="@string/todo" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_search_box" />
 
     <EditText
         android:id="@+id/txt_search_box"
@@ -70,94 +69,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/product_grid_view"
         tools:visibility="visible" />
-
-    <ImageButton
-        android:id="@+id/btn_food"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="25dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/ic_baseline_fastfood_24"
-        android:contentDescription="@string/food_logo" />
-
-    <ImageButton
-        android:id="@+id/btn_nuggets"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_food"
-        app:srcCompat="@drawable/ic_baseline_fastfood_24"
-        android:contentDescription="@string/nuggets_logo" />
-
-    <ImageButton
-        android:id="@+id/btn_salads"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_nuggets"
-        app:srcCompat="@drawable/ic_baseline_fastfood_24"
-        android:contentDescription="@string/salads_logo" />
-
-    <ImageButton
-        android:id="@+id/btn_happy_meal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_salads"
-        app:srcCompat="@drawable/ic_baseline_fastfood_24"
-        android:contentDescription="@string/happy_meal_logo" />
-
-    <ImageButton
-        android:id="@+id/btn_mc_caffee"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_happy_meal"
-        app:srcCompat="@drawable/ic_baseline_fastfood_24"
-        android:contentDescription="@string/mccafe_logo" />
-
-    <ImageButton
-        android:id="@+id/btn_sweet_treats"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_mc_caffee"
-        app:srcCompat="@drawable/ic_baseline_fastfood_24"
-        android:contentDescription="@string/sweet_treats_logo" />
-
-    <ImageButton
-        android:id="@+id/btn_breakfast_meals"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_sweet_treats"
-        app:srcCompat="@drawable/ic_baseline_fastfood_24"
-        android:contentDescription="@string/breakfast_meals_logo" />
-
-    <ImageButton
-        android:id="@+id/btn_morning_platters"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_breakfast_meals"
-        app:srcCompat="@drawable/ic_baseline_fastfood_24"
-        android:contentDescription="@string/morning_platters_logo" />
 
     <ImageButton
         android:id="@+id/btn_voice_input"
@@ -207,5 +118,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/product_grid_view" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_category_buttons"
+        android:layout_width="80dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toStartOf="@+id/product_grid_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
