@@ -1,9 +1,7 @@
 package com.example.e_commerce;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,7 +21,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.e_commerce.login.User;
+import com.example.e_commerce.login.Constants;
+import com.example.e_commerce.ui.main.AccountActivity;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -31,7 +30,6 @@ import java.util.Locale;
 public class ChooseProductActivity extends AppCompatActivity {
     private Product p;
     private GridView gridView;
-    private ShoppingCart shoppingCart;
     private TextView search;
     private Button removeResults;
     private int index = 0;
@@ -42,12 +40,12 @@ public class ChooseProductActivity extends AppCompatActivity {
         setContentView(R.layout.activity_choose_product);
         readProducts();
         gridView = findViewById(R.id.product_grid_view);
-        Button shoppingCart = findViewById(R.id.btn_shoping_cart);
+        final Button shoppingCart = findViewById(R.id.btn_shoping_cart);
         shoppingCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(p.getChosenItems().size() == 0)
-                    startActivity(new Intent(ChooseProductActivity.this,ShoppingCartActivity.class));
+                Intent shoppingCartIntent = new Intent(ChooseProductActivity.this, ShoppingCartActivity.class);
+                startActivity(shoppingCartIntent);
             }
         });
         ImageButton btnMorningPlatters = findViewById(R.id.btn_morning_platters);
@@ -156,6 +154,7 @@ public class ChooseProductActivity extends AppCompatActivity {
         });
 
         search.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 final int DRAWABLE_RIGHT = 2;
@@ -254,8 +253,8 @@ public class ChooseProductActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.profile_link:
-                // startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
+            case R.id.account_link:
+                 startActivity(new Intent(ChooseProductActivity.this, AccountActivity.class));
                 return true;
             case R.id.location_link:
                 startActivity(new Intent(ChooseProductActivity.this, MapsActivity.class));
@@ -263,7 +262,11 @@ public class ChooseProductActivity extends AppCompatActivity {
                 return true;
             case R.id.logout_link:
                 SharedPreferences.Editor editor =loginSharedPreferences.edit();
-                editor.putBoolean(User.REMEMBER_ME, false);
+                editor.putString(Constants.UserTable.USERNAME,"");
+                editor.putString(Constants.UserTable.EMAIL, "");
+                editor.putString(Constants.UserTable.PASSWORD, "");
+                editor.putString(Constants.UserTable.BIRTHDATE, "");
+                editor.putBoolean(Constants.REMEMBER_ME, false);
                 editor.apply();
                 finish();
                 return true;

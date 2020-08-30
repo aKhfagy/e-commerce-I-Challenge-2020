@@ -3,7 +3,6 @@
     <string name="text_accounts">All Accounts</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="name">Name</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="text_login">Login</string>
     <string name="text_register">Register</string>
@@ -38,4 +37,11 @@
     <string name="todo">TODO</string>
     <string name="cart">Cart</string>
     <string name="choose_product_label">Your Favourite Menu!</string>
+    <string name="name">Name</string>
+    <string name="total">Total</string>
+    <string name="title_activity_account">AccountActivity</string>
+    <string name="account">Account</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="your_account">Your Account</string>
 </resources>

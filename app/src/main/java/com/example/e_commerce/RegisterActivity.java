@@ -133,7 +133,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 user.setPassword(userPassword.getText().toString());
                 user.setBirthdate(birthdayLink.getText().toString());
 
-                boolean isExist = databaseHelper.isUserExists(user.getUserEmail(), user.getPassword());
+                boolean isExist = databaseHelper.isUserExists(user.getUserEmail(), user.getPassword(),false);
                 if (isExist) {
                     Toast.makeText(RegisterActivity.this, "existssssssss.", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
