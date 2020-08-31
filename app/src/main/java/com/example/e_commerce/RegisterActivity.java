@@ -32,13 +32,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        loginLink=(TextView) findViewById(R.id.login_link);
-        birthdayLink=(TextView) findViewById(R.id.birthday_link);
-        registerBtn = (Button) findViewById(R.id.register_btn);
-        userName = (EditText) findViewById(R.id.edt_User_name);
-        userEmail = (EditText) findViewById(R.id.edt_User_email);
-        userPassword = (EditText) findViewById(R.id.edt_User_Password);
-        userConfirmPassword = (EditText) findViewById(R.id.edt_User_Confirm_Password);
+        loginLink = findViewById(R.id.login_link);
+        birthdayLink = findViewById(R.id.birthday_link);
+        registerBtn = findViewById(R.id.register_btn);
+        userName = findViewById(R.id.edt_User_name);
+        userEmail = findViewById(R.id.edt_User_email);
+        userPassword = findViewById(R.id.edt_User_Password);
+        userConfirmPassword = findViewById(R.id.edt_User_Confirm_Password);
 
         databaseHelper = new LoginDbHelper(RegisterActivity.this);
 

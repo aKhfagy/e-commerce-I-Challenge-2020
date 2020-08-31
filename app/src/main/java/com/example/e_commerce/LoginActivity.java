@@ -25,17 +25,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        registerLink=(TextView) findViewById(R.id.register_link);
-        forgetLink=(TextView) findViewById(R.id.forget_link);
-        loginBtn = (Button) findViewById(R.id.login_btn);
-        userEmail = (EditText) findViewById(R.id.edt_User_email);
-        userPassword = (EditText) findViewById(R.id.edt_User_Password);
+        registerLink = findViewById(R.id.register_link);
+        forgetLink = findViewById(R.id.forget_link);
+        loginBtn = findViewById(R.id.login_btn);
+        userEmail = findViewById(R.id.edt_User_email);
+        userPassword = findViewById(R.id.edt_User_Password);
         checkBoxRememberMe = findViewById(R.id.remember_me);
 
         databaseHelper = new LoginDbHelper(LoginActivity.this);
         loginBtn.setOnClickListener(this);
         registerLink.setOnClickListener(this);
         forgetLink.setOnClickListener(this);
+
 
     }
     private void clearFields()
@@ -69,7 +70,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
             case R.id.login_btn:
                 if(!inputValidation(userEmail,userPassword))
                     break;
