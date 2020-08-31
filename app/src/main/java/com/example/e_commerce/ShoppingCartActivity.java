@@ -20,7 +20,7 @@ import java.util.List;
 
 public class ShoppingCartActivity extends AppCompatActivity {
     static ArrayList<Item> itemList = new ArrayList<>();
-    public static Double Total = 0.0;
+    public static double Total = 0;
     public static Button total;
     private SharedPreferences sharedPreferences;
 
@@ -39,7 +39,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
                 sendMail();
             }
         });
-        total.setText("Total : " + Total);
+        total.setText("Total : " + Total+ "\n proceed to cheeckout");
         System.out.println(itemList.get(0).getName());
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         ShoppingCartAdapter adapter = new ShoppingCartAdapter(this, itemList);
@@ -48,8 +48,8 @@ public class ShoppingCartActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(LayoutManager);
     }
 
-    static Double countTotal() {
-        Double sum = 0.0;
+    static double countTotal() {
+        double sum = 0.0;
         for (int i = 0; i < itemList.size(); i++) {
             Double Cost = Double.parseDouble(itemList.get(i).getCost());
             int Quantity = itemList.get(i).getQuantity();

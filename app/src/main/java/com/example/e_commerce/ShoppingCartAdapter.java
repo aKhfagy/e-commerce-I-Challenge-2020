@@ -6,10 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 
 import static com.example.e_commerce.ShoppingCartActivity.Total;
@@ -42,11 +40,11 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
             public void onClick(View view) {
                 itemList.get(position).incrementQuantity();
                 holder.Quantity.setText(itemList.get(position).getQuantity() + "");
-                Double Cost = Double.parseDouble(itemList.get(position).getCost());
+                double Cost = Double.parseDouble(itemList.get(position).getCost());
                 int Quantity = itemList.get(position).getQuantity();
                 holder.Cost.setText(Cost * Quantity + "$");
                 Total = ShoppingCartActivity.countTotal();
-                ShoppingCartActivity.total.setText("Total : " + Total);
+                ShoppingCartActivity.total.setText("Total : " + Total+ "\n proceed to cheeckout");
             }
         });
 
@@ -55,11 +53,11 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
             public void onClick(View view) {
                 itemList.get(position).decrementQuantity();
                 holder.Quantity.setText(itemList.get(position).getQuantity() + "");
-                Double Cost = Double.parseDouble(itemList.get(position).getCost());
+                double Cost = Double.parseDouble(itemList.get(position).getCost());
                 int Quantity = itemList.get(position).getQuantity();
                 holder.Cost.setText(Cost * Quantity + "$");
                 Total = ShoppingCartActivity.countTotal();
-                ShoppingCartActivity.total.setText("Total : " + Total);
+                ShoppingCartActivity.total.setText("Total : " + Total+ "\n proceed to cheeckout");
             }
         });
 
@@ -69,7 +67,7 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
                 itemList.remove(itemList.get(holder.getAdapterPosition()));
                 notifyItemRemoved(holder.getAdapterPosition());
                 Total = ShoppingCartActivity.countTotal();
-                ShoppingCartActivity.total.setText("Total : " + Total);
+                ShoppingCartActivity.total.setText("Total : " + Total + "\n proceed to cheeckout");
             }
         });
     }
