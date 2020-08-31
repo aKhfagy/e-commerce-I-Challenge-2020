@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -39,7 +38,6 @@ public class ProfileFragment extends Fragment  {
         userEmail.setText(sharedPreferences.getString(Constants.UserTable.EMAIL,""));
         userPassword.setText(sharedPreferences.getString(Constants.UserTable.PASSWORD,""));
         birthdate.setText(sharedPreferences.getString(Constants.UserTable.BIRTHDATE,""));
-        Toast.makeText(getActivity(), "Presssed ", Toast.LENGTH_LONG).show();
         return view;
     }
 

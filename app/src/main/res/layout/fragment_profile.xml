@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.main.accountFragments.ProfileFragment">
 
     <LinearLayout
@@ -11,65 +12,97 @@
         android:orientation="vertical"
         tools:ignore="MissingConstraints,UselessParent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:text="@string/name"
-        />
-
-    <TextView
-        android:id="@+id/edt_User_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/colorTextHint"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:text="@string/email"
-        />
-
-    <TextView
-        android:id="@+id/edt_User_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/colorTextHint"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/password"
-        />
-
-    <TextView
-        android:id="@+id/edt_User_Password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/colorTextHint"
-        />
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/birthday"
-             />
-    <TextView
-        android:id="@+id/birthday_link"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/choose_your_birthday"
-        android:textColor="@color/colorTextHint"
-        android:textSize="16sp"
-        />
+            android:orientation="horizontal"
+            android:layout_marginTop="40dp"
+            tools:ignore="MissingConstraints,UseCompoundDrawables">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="5dp"
+                app:srcCompat="@drawable/ic_baseline_user"
+                android:tint="@android:color/white"
+                tools:ignore="ContentDescription,VectorDrawableCompat" />
+            <TextView
+                android:id="@+id/edt_User_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@android:color/white"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="40dp"
+            tools:ignore="MissingConstraints,UseCompoundDrawables">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="5dp"
+                app:srcCompat="@drawable/ic_baseline_email"
+                android:tint="@android:color/white"
+                tools:ignore="ContentDescription,VectorDrawableCompat" />
+            <TextView
+                android:id="@+id/edt_User_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@android:color/white"
+                />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="40dp"
+            tools:ignore="MissingConstraints,UseCompoundDrawables">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="5dp"
+                app:srcCompat="@drawable/ic_round_vpn_password"
+                android:tint="@android:color/white"
+                tools:ignore="ContentDescription,VectorDrawableCompat" />
+            <TextView
+                android:id="@+id/edt_User_Password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@android:color/white"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="40dp"
+            tools:ignore="MissingConstraints,UseCompoundDrawables">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="5dp"
+                app:srcCompat="@drawable/ic_baseline_cake_24"
+                android:tint="@android:color/white"
+                tools:ignore="ContentDescription,VectorDrawableCompat" />
+            <TextView
+                android:id="@+id/birthday_link"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/choose_your_birthday"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
     </LinearLayout>
 
 </FrameLayout>
