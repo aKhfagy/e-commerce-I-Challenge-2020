@@ -5,9 +5,6 @@
         android:id="@+id/account_link"
         android:title="@string/your_account" />
     <item
-        android:id="@+id/cart_link"
-        android:title="@string/your_cart" />
-    <item
         android:id="@+id/location_link"
         android:title="Get store location" />
     <item

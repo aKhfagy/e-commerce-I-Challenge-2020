@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +23,8 @@ import java.util.Calendar;
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
     Button registerBtn;
     EditText userName,userEmail,userPassword,userConfirmPassword;
-    TextView loginLink,birthdayLink;
+    TextView loginLink,birthdayTxt;
+    ImageView birthdayLink;
     LoginDbHelper databaseHelper;
     DatePickerDialog datePickerDialog;
     User user = new User();
@@ -34,6 +36,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         loginLink = findViewById(R.id.login_link);
         birthdayLink = findViewById(R.id.birthday_link);
+        birthdayTxt = findViewById(R.id.birthday_txt);
         registerBtn = findViewById(R.id.register_btn);
         userName = findViewById(R.id.edt_User_name);
         userEmail = findViewById(R.id.edt_User_email);
@@ -54,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         userEmail.setText(null);
         userPassword.setText(null);
         userConfirmPassword.setText(null);
-        birthdayLink.setText("Choose your birthday");
+        birthdayTxt.setText("Choose your birthday");
 
     }
     private boolean inputValedation(EditText userName,EditText userEmail,EditText userPassword,EditText userConfirmPassword)
@@ -80,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(RegisterActivity.this, "Please enter your confirmation password ", Toast.LENGTH_LONG).show();
             return false;
         }
-        if(birthdayLink.getText().toString().equals("Choose your birthday"))
+        if(birthdayTxt.getText().toString().equals("Choose your birthday"))
         {
             Toast.makeText(RegisterActivity.this, "Please enter your birthdate ", Toast.LENGTH_LONG).show();
             return false;
@@ -117,7 +120,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
                 String date = month + "/" + day + "/" + year;
-                birthdayLink.setText(date);
+                birthdayTxt.setText(date);
             }
         };
     }
@@ -131,11 +134,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 user.setUsername(userName.getText().toString());
                 user.setUserEmail(userEmail.getText().toString());
                 user.setPassword(userPassword.getText().toString());
-                user.setBirthdate(birthdayLink.getText().toString());
+                user.setBirthdate(birthdayTxt.getText().toString());
 
                 boolean isExist = databaseHelper.isUserExists(user.getUserEmail(), user.getPassword(),false);
                 if (isExist) {
-                    Toast.makeText(RegisterActivity.this, "existssssssss.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this, "Exists.", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     intent.putExtra("username", userEmail.getText().toString());
                     startActivity(intent);
@@ -143,7 +146,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 } else {
                     databaseHelper.addUser(user);
                     clearFields();
-                    Toast.makeText(RegisterActivity.this, "addedddddddddddd", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this, "Successful registration", Toast.LENGTH_SHORT).show();
                     finish();
                 }
                 break;

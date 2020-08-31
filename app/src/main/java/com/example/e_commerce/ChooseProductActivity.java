@@ -24,7 +24,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.e_commerce.login.Constants;
-import com.example.e_commerce.login.User;
 import com.example.e_commerce.ui.main.AccountActivity;
 
 import java.util.ArrayList;
@@ -194,7 +193,6 @@ public class ChooseProductActivity extends AppCompatActivity implements Category
                 return true;
             case R.id.location_link:
                 startActivity(new Intent(ChooseProductActivity.this, MapsActivity.class));
-
                 return true;
             case R.id.logout_link:
                 SharedPreferences.Editor editor =loginSharedPreferences.edit();

@@ -9,8 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
-
 public class LoginDbHelper extends SQLiteOpenHelper {
     String strSeparator = "_,_";
     private SQLiteDatabase sqLiteDatabase;
@@ -40,7 +38,7 @@ public class LoginDbHelper extends SQLiteOpenHelper {
         row.put(Constants.UserTable.EMAIL, user.getUserEmail());
         row.put(Constants.UserTable.PASSWORD, user.getPassword());
         row.put(Constants.UserTable.BIRTHDATE, user.getBirthdate());
-        row.put(Constants.UserTable.REVIEWS, "");
+        row.put(Constants.UserTable.REVIEWS,"Your reviwes:");
         sqLiteDatabase = this.getWritableDatabase();
         sqLiteDatabase.insert(Constants.UserTable.USERS_TABLE_NAME, null, row);
         sqLiteDatabase.close();
@@ -71,9 +69,9 @@ public class LoginDbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.close();
     }
 
-    public void addReviews(ArrayList<String> reviews) {
+    public void addReviews(String reviews) {
         ContentValues row = new ContentValues();
-        row.put(Constants.UserTable.REVIEWS, convertArrayToString(reviews));
+        row.put(Constants.UserTable.REVIEWS, reviews);
         sqLiteDatabase = this.getWritableDatabase();
         sqLiteDatabase.update(Constants.UserTable.USERS_TABLE_NAME, row, Constants.UserTable.ID + " = ?",
                 new String[]{String.valueOf(this.sharedPreferences.getInt(Constants.UserTable.ID, 0))});
@@ -107,17 +105,7 @@ public class LoginDbHelper extends SQLiteOpenHelper {
         }
     }
 
-    public String convertArrayToString(ArrayList<String> array) {
-        String reviewStr = "";
-        for (int i = 0; i < array.size(); i++) {
-            reviewStr = reviewStr + array.get(i);
-            // Do not append comma at the end of last element
-            if (i < array.size() - 1) {
-                reviewStr = reviewStr + strSeparator;
-            }
-        }
-        return reviewStr;
-    }
+
 
 
 }
