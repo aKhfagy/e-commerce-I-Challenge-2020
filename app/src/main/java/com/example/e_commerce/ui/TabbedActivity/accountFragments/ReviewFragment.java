@@ -1,4 +1,4 @@
-package com.example.e_commerce.ui.main.accountFragments;
+package com.example.e_commerce.ui.TabbedActivity.accountFragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -52,6 +52,16 @@ public class ReviewFragment extends Fragment  {
         databaseHelper = new LoginDbHelper(container.getContext());
         inpReview = v.findViewById(R.id.review_txt);
         addBtn = v.findViewById(R.id.add_review_btn);
+
+        reviewList = new ArrayList<>();
+        reviewList.addAll(getReviwsArrayList(sharedPreferences.getString(Constants.UserTable.REVIEWS, "")));
+
+        recyclerView = (RecyclerView) v.findViewById(R.id.list);
+        ReviewAdapter viewAdapter = new ReviewAdapter(getContext(), reviewList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        recyclerView.setAdapter(viewAdapter);
+
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,14 +76,6 @@ public class ReviewFragment extends Fragment  {
 
             }
         });
-        reviewList = new ArrayList<>();
-        reviewList.addAll(getReviwsArrayList(sharedPreferences.getString(Constants.UserTable.REVIEWS, "")));
-
-        recyclerView = (RecyclerView) v.findViewById(R.id.list);
-        ReviewAdapter viewAdapter = new ReviewAdapter(getContext(), reviewList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        recyclerView.setAdapter(viewAdapter);
         return v;
     }
     public ArrayList<String> getReviwsArrayList(String str) {
@@ -88,7 +90,6 @@ public class ReviewFragment extends Fragment  {
         String reviewStr = "";
         for (int i = 0; i < array.size(); i++) {
             reviewStr = reviewStr + array.get(i);
-            // Do not append comma at the end of last element
             if (i < array.size() - 1) {
                 reviewStr = reviewStr + strSeparator;
             }

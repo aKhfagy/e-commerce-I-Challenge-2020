@@ -2,7 +2,7 @@ package com.example.e_commerce.login;
 
 public class Constants {
     public static final String DATABASE_NAME = "com.example.ichallenge";
-    public static final String PREFERENCE_NAME = "com.example.sessionsix";
+    public static final String PREFERENCE_NAME = "com.example.ichallenge";
     public static final String REMEMBER_ME = "remember_me";
 
     public static class UserTable {

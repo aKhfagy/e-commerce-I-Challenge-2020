@@ -24,7 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.e_commerce.login.Constants;
-import com.example.e_commerce.ui.main.AccountActivity;
+import com.example.e_commerce.ui.TabbedActivity.AccountActivity;
 
 import java.util.ArrayList;
 import java.util.Locale;

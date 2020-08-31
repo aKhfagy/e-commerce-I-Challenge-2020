@@ -1,4 +1,4 @@
-package com.example.e_commerce.ui.main;
+package com.example.e_commerce.ui.TabbedActivity;
 
 import androidx.fragment.app.Fragment;
 

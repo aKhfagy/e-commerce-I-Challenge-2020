@@ -1,7 +1,6 @@
-package com.example.e_commerce;
+package com.example.e_commerce.login;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -15,8 +14,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.e_commerce.login.LoginDbHelper;
-import com.example.e_commerce.login.User;
+import com.example.e_commerce.R;
 
 import java.util.Calendar;
 
@@ -88,13 +86,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(RegisterActivity.this, "Please enter your birthdate ", Toast.LENGTH_LONG).show();
             return false;
         }
-        //
+        // Correct format
         if( !android.util.Patterns.EMAIL_ADDRESS.matcher(userEmail.getText().toString()).matches())
         {
             Toast.makeText(RegisterActivity.this, "Please enter correct email format", Toast.LENGTH_LONG).show();
             return false;
         }
-        if(!userPassword.getText().toString().equals(userConfirmPassword.getText              ().toString()))
+        if(!userPassword.getText().toString().equals(userConfirmPassword.getText().toString()))
         {
             Toast.makeText(RegisterActivity.this, "Please confirm your password correctly ", Toast.LENGTH_LONG).show();
             return false;
@@ -104,10 +102,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
     public void createCalenderBox()
     {
-        final Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
+        final Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
         datePickerDialog = new DatePickerDialog(RegisterActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,mDateSetListener, year,month,day);
         datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         datePickerDialog.show();
@@ -139,9 +137,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 boolean isExist = databaseHelper.isUserExists(user.getUserEmail(), user.getPassword(),false);
                 if (isExist) {
                     Toast.makeText(RegisterActivity.this, "Exists.", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                    intent.putExtra("username", userEmail.getText().toString());
-                    startActivity(intent);
+                    finish();
 
                 } else {
                     databaseHelper.addUser(user);

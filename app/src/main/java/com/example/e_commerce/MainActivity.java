@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.e_commerce.login.Constants;
+import com.example.e_commerce.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
     public SharedPreferences loginSharedPreferences;

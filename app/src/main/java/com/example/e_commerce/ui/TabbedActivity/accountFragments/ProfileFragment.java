@@ -1,4 +1,4 @@
-package com.example.e_commerce.ui.main.accountFragments;
+package com.example.e_commerce.ui.TabbedActivity.accountFragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;

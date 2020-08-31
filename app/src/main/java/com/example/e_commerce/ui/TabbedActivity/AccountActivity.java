@@ -1,4 +1,4 @@
-package com.example.e_commerce.ui.main;
+package com.example.e_commerce.ui.TabbedActivity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,8 +15,8 @@ import com.example.e_commerce.MapsActivity;
 import com.example.e_commerce.R;
 import com.example.e_commerce.login.Constants;
 import com.example.e_commerce.login.LoginDbHelper;
-import com.example.e_commerce.ui.main.accountFragments.ProfileFragment;
-import com.example.e_commerce.ui.main.accountFragments.ReviewFragment;
+import com.example.e_commerce.ui.TabbedActivity.accountFragments.ProfileFragment;
+import com.example.e_commerce.ui.TabbedActivity.accountFragments.ReviewFragment;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;

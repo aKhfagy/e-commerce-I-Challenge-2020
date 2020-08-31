@@ -7,13 +7,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.google.gson.Gson;
-
 public class LoginDbHelper extends SQLiteOpenHelper {
-    String strSeparator = "_,_";
     private SQLiteDatabase sqLiteDatabase;
     private SharedPreferences sharedPreferences;
-    private Gson gson;
 
     public LoginDbHelper(Context context) {
         super(context, Constants.DATABASE_NAME, null, 1);
@@ -53,7 +49,6 @@ public class LoginDbHelper extends SQLiteOpenHelper {
             cursor.close();
             close();
             return true;
-
         } else {
             cursor.close();
             close();
@@ -104,8 +99,4 @@ public class LoginDbHelper extends SQLiteOpenHelper {
             return false;
         }
     }
-
-
-
-
 }
