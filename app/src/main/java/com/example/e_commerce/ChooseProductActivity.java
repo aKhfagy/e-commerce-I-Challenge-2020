@@ -200,8 +200,10 @@ public class ChooseProductActivity extends AppCompatActivity implements Category
                 editor.putString(Constants.UserTable.EMAIL, "");
                 editor.putString(Constants.UserTable.PASSWORD, "");
                 editor.putString(Constants.UserTable.BIRTHDATE, "");
+                editor.putString(Constants.UserTable.REVIEWS, "Your reviews:");
                 editor.putBoolean(Constants.REMEMBER_ME, false);
                 editor.apply();
+                ShoppingCartActivity.itemList.clear();
                 finish();
                 return true;
         }
