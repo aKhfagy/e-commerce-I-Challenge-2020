@@ -12,10 +12,14 @@ import androidx.fragment.app.Fragment;
 
 import com.example.e_commerce.R;
 import com.example.e_commerce.login.Constants;
+import com.example.e_commerce.login.UserDbHelper;
+
+import java.util.ArrayList;
 
 public class ProfileFragment extends Fragment  {
     TextView userName,userEmail,userPassword, birthdate;
     private  SharedPreferences sharedPreferences;
+    UserDbHelper databaseHelper;
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -34,10 +38,14 @@ public class ProfileFragment extends Fragment  {
         birthdate = (TextView) view.findViewById(R.id.birthday_link);
 
         sharedPreferences= container.getContext().getSharedPreferences(Constants.PREFERENCE_NAME, Context.MODE_PRIVATE);
-        userName.setText(sharedPreferences.getString(Constants.UserTable.USERNAME,""));
-        userEmail.setText(sharedPreferences.getString(Constants.UserTable.EMAIL,""));
-        userPassword.setText(sharedPreferences.getString(Constants.UserTable.PASSWORD,""));
-        birthdate.setText(sharedPreferences.getString(Constants.UserTable.BIRTHDATE,""));
+        databaseHelper = new UserDbHelper(container.getContext());
+        ArrayList<String> tempUser=databaseHelper.getAllUserInfo(sharedPreferences.getInt(Constants.UserTable.ID,-1));
+        if(!tempUser.isEmpty()) {
+            userName.setText(tempUser.get(0));
+            userEmail.setText(tempUser.get(1));
+            userPassword.setText(tempUser.get(2));
+            birthdate.setText(tempUser.get(3));
+        }
         return view;
     }
 

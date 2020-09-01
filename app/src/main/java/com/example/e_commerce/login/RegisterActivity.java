@@ -1,8 +1,10 @@
 package com.example.e_commerce.login;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,21 +14,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.e_commerce.R;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
     Button registerBtn;
     EditText userName,userEmail,userPassword,userConfirmPassword;
     TextView loginLink,birthdayTxt;
     ImageView birthdayLink;
-    LoginDbHelper databaseHelper;
+    UserDbHelper databaseHelper;
     DatePickerDialog datePickerDialog;
     User user = new User();
     private DatePickerDialog.OnDateSetListener mDateSetListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         userPassword = findViewById(R.id.edt_User_Password);
         userConfirmPassword = findViewById(R.id.edt_User_Confirm_Password);
 
-        databaseHelper = new LoginDbHelper(RegisterActivity.this);
+        databaseHelper = new UserDbHelper(RegisterActivity.this);
 
         registerBtn.setOnClickListener(this);
         loginLink.setOnClickListener(this);
@@ -49,6 +54,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         setDateListener();
 
     }
+    @SuppressLint("SetTextI18n")
     private void clearFields()
     {
         userName.setText(null);
@@ -100,6 +106,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         return true;
     }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void createCalenderBox()
     {
         final Calendar calendar = Calendar.getInstance();
@@ -107,7 +114,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         datePickerDialog = new DatePickerDialog(RegisterActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,mDateSetListener, year,month,day);
-        datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Objects.requireNonNull(datePickerDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         datePickerDialog.show();
 
     }
@@ -122,6 +129,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             }
         };
     }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -133,13 +141,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 user.setUserEmail(userEmail.getText().toString());
                 user.setPassword(userPassword.getText().toString());
                 user.setBirthdate(birthdayTxt.getText().toString());
-
-                boolean isExist = databaseHelper.isUserExists(user.getUserEmail(), user.getPassword(),false);
-                if (isExist) {
+                int isExist = databaseHelper.isUserExists(user.getUserEmail(), user.getPassword());
+                if (isExist!=-1) {
                     Toast.makeText(RegisterActivity.this, "Exists.", Toast.LENGTH_SHORT).show();
                     finish();
-
-                } else {
+                }
+                 else {
                     databaseHelper.addUser(user);
                     clearFields();
                     Toast.makeText(RegisterActivity.this, "Successful registration", Toast.LENGTH_SHORT).show();

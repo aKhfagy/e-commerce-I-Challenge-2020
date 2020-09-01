@@ -48,4 +48,6 @@
     <string name="birthday">Birthday</string>
     <string name="add">Add</string>
     <string name="review">Review</string>
+    <string name="no_account_yet_create_one">No Account yet? Create One</string>
+    <string name="save_new_password">Save new Password</string>
 </resources>

@@ -2,18 +2,17 @@ package com.example.e_commerce.login;
 
 public class User {
 
-    private String username,password,userEmail,birthdate;
+    private String username,password,userEmail,birthdate,rememberMe;
     private int id;
 
     public User() {
     }
+    public String getRememberMe() {
+        return rememberMe;
+    }
 
-    public User(int id, String username, String userEmail, String password, String birthdate ) {
-        this.username = username;
-        this.password = password;
-        this.userEmail = userEmail;
-        this.birthdate = birthdate;
-        this.id = id;
+    public void setRememberMe(String rememberMe) {
+        this.rememberMe = rememberMe;
     }
 
     public String getBirthdate() {

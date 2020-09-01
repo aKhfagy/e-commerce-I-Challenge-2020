@@ -14,7 +14,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.e_commerce.MapsActivity;
 import com.example.e_commerce.R;
 import com.example.e_commerce.login.Constants;
-import com.example.e_commerce.login.LoginDbHelper;
+import com.example.e_commerce.login.UserDbHelper;
 import com.example.e_commerce.ui.TabbedActivity.accountFragments.ProfileFragment;
 import com.example.e_commerce.ui.TabbedActivity.accountFragments.ReviewFragment;
 import com.google.android.material.tabs.TabLayout;
@@ -23,13 +23,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccountActivity  extends AppCompatActivity {
-    public static LoginDbHelper databaseHelper;
+    public static UserDbHelper databaseHelper;
     public SharedPreferences loginSharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
-        databaseHelper = new LoginDbHelper(AccountActivity.this);
+        databaseHelper = new UserDbHelper(AccountActivity.this);
         loginSharedPreferences = getSharedPreferences(Constants.PREFERENCE_NAME, Context.MODE_PRIVATE);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getViewPagerItems());
         ViewPager viewPager = findViewById(R.id.view_pager);

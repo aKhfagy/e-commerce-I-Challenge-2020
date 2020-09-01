@@ -2,18 +2,17 @@ package com.example.e_commerce.login;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class LoginDbHelper extends SQLiteOpenHelper {
-    private SQLiteDatabase sqLiteDatabase;
-    private SharedPreferences sharedPreferences;
+import java.util.ArrayList;
 
-    public LoginDbHelper(Context context) {
+public class UserDbHelper extends SQLiteOpenHelper {
+    private SQLiteDatabase sqLiteDatabase;
+
+    public UserDbHelper(Context context) {
         super(context, Constants.DATABASE_NAME, null, 1);
-        sharedPreferences = context.getSharedPreferences(Constants.PREFERENCE_NAME, Context.MODE_PRIVATE);
 
     }
 
@@ -64,39 +63,58 @@ public class LoginDbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.close();
     }
 
-    public void addReviews(String reviews) {
+    public void addReviews(String reviews,int userId) {
         ContentValues row = new ContentValues();
         row.put(Constants.UserTable.REVIEWS, reviews);
         sqLiteDatabase = this.getWritableDatabase();
         sqLiteDatabase.update(Constants.UserTable.USERS_TABLE_NAME, row, Constants.UserTable.ID + " = ?",
-                new String[]{String.valueOf(this.sharedPreferences.getInt(Constants.UserTable.ID, 0))});
+                new String[]{String.valueOf(userId)});
         sqLiteDatabase.close();
     }
 
-    public boolean isUserExists(String email, String password, boolean rememberMe) {
-        SQLiteDatabase sql = this.getReadableDatabase();
+    public int isUserExists(String email, String password) {
+        sqLiteDatabase = this.getReadableDatabase();
         String selectQuery = "SELECT *  FROM " + Constants.UserTable.USERS_TABLE_NAME + " WHERE " + Constants.UserTable.EMAIL + "= '" + email + "' AND " + Constants.UserTable.PASSWORD + "= '" + password + "' ";
-        Cursor cursor = sql.rawQuery(selectQuery, null);
-        if (cursor.getCount() > 0) {
-            if (cursor.moveToFirst()) {
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putInt(Constants.UserTable.ID, cursor.getInt(cursor.getColumnIndex(Constants.UserTable.ID)));
-                editor.putString(Constants.UserTable.USERNAME, cursor.getString(cursor.getColumnIndex(Constants.UserTable.USERNAME)));
-                editor.putString(Constants.UserTable.EMAIL, email);
-                editor.putString(Constants.UserTable.PASSWORD, password);
-                editor.putString(Constants.UserTable.BIRTHDATE, cursor.getString(cursor.getColumnIndex(Constants.UserTable.BIRTHDATE)));
-                editor.putString(Constants.UserTable.REVIEWS, cursor.getString(cursor.getColumnIndex(Constants.UserTable.REVIEWS)));
-                editor.putBoolean(Constants.REMEMBER_ME, rememberMe);
-                editor.apply();
-            }
-            cursor.close();
-            close();
-            return true;
-
-        } else {
-            cursor.close();
-            close();
-            return false;
+        Cursor cursor = sqLiteDatabase.rawQuery(selectQuery, null);
+        if (cursor.getCount() > 0 && cursor.moveToFirst()) {
+            return cursor.getInt(cursor.getColumnIndex(Constants.UserTable.ID));
         }
+        sqLiteDatabase.close();
+        return -1;
+    }
+    public ArrayList<String> getAllUserInfo(int userTd) {
+        ArrayList<String> tempUser=new ArrayList<String>();
+        sqLiteDatabase = this.getReadableDatabase();
+        String selectQuery = "SELECT *  FROM " + Constants.UserTable.USERS_TABLE_NAME + " WHERE " + Constants.UserTable.ID + "= '" + userTd + "' ";
+        Cursor cursor = sqLiteDatabase.rawQuery(selectQuery, null);
+        if (cursor.getCount() > 0 && cursor.moveToFirst()) {
+
+            tempUser.add(cursor.getString(cursor.getColumnIndex(Constants.UserTable.USERNAME)));
+            tempUser.add(cursor.getString(cursor.getColumnIndex(Constants.UserTable.EMAIL)));
+            tempUser.add(cursor.getString(cursor.getColumnIndex(Constants.UserTable.PASSWORD)));
+            tempUser.add(cursor.getString(cursor.getColumnIndex(Constants.UserTable.BIRTHDATE)));
+        }
+        sqLiteDatabase.close();
+        return tempUser;
+    }
+    public String getUserEmail(int userTd) {
+        sqLiteDatabase = this.getReadableDatabase();
+        String selectQuery = "SELECT *  FROM " + Constants.UserTable.USERS_TABLE_NAME + " WHERE " + Constants.UserTable.ID + "= '" + userTd + "' ";
+        Cursor cursor = sqLiteDatabase.rawQuery(selectQuery, null);
+        if (cursor.getCount() > 0 && cursor.moveToFirst()) {
+            return cursor.getString(cursor.getColumnIndex(Constants.UserTable.EMAIL));
+        }
+        sqLiteDatabase.close();
+        return "";
+    }
+    public String getUserReviews(int userTd) {
+        sqLiteDatabase = this.getReadableDatabase();
+        String selectQuery = "SELECT *  FROM " + Constants.UserTable.USERS_TABLE_NAME + " WHERE " + Constants.UserTable.ID + "= '" + userTd + "' ";
+        Cursor cursor = sqLiteDatabase.rawQuery(selectQuery, null);
+        if (cursor.getCount() > 0 && cursor.moveToFirst()) {
+            return cursor.getString(cursor.getColumnIndex(Constants.UserTable.REVIEWS));
+        }
+        sqLiteDatabase.close();
+        return "";
     }
 }

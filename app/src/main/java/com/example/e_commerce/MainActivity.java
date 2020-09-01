@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loginSharedPreferences = getSharedPreferences(Constants.PREFERENCE_NAME, Context.MODE_PRIVATE);
-       // startActivity(new Intent(MainActivity.this, AccountActivity.class));
+        //startActivity(new Intent(MainActivity.this, ForgetPasswordActivity.class));
 
         if (loginSharedPreferences.getBoolean(Constants.REMEMBER_ME, false)) {
             startActivity(new Intent(MainActivity.this, ChooseProductActivity.class));
@@ -27,5 +27,6 @@ public class MainActivity extends AppCompatActivity {
         }
         finish();
     }
+
 
 }

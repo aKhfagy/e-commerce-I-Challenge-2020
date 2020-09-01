@@ -1,4 +1,4 @@
-package com.example.e_commerce.login;
+package com.example.e_commerce;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,14 +10,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.e_commerce.R;
+import com.example.e_commerce.login.RegisterActivity;
+import com.example.e_commerce.login.UserDbHelper;
 
 public class ForgetPasswordActivity extends AppCompatActivity implements View.OnClickListener  {
 
     Button SaveBtn;
     EditText userEmail, newPassword, ConfirmNewPassword;
     TextView loginLink,registerLink;
-    LoginDbHelper databaseHelper;
+    UserDbHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class ForgetPasswordActivity extends AppCompatActivity implements View.On
         newPassword = (EditText) findViewById(R.id.new_password);
         ConfirmNewPassword = (EditText) findViewById(R.id.new_confirm_password);
 
-        databaseHelper = new LoginDbHelper(ForgetPasswordActivity.this);
+        databaseHelper = new UserDbHelper(ForgetPasswordActivity.this);
         SaveBtn.setOnClickListener(this);
         loginLink.setOnClickListener(this);
 
