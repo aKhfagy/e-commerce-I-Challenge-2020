@@ -42,16 +42,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        style="@style/Widget.AppCompat.Button"
         android:id="@+id/btn_cancel"
-        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginBottom="16dp"
         android:text="@string/cancel_order"
+        android:background="#008080"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="#C62828"
+        android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/product_grid_view"
@@ -71,8 +72,8 @@
         app:srcCompat="@drawable/ic_baseline_mic_24" />
 
     <Button
+        style="@style/Widget.MaterialComponents.Button"
         android:id="@+id/btn_remove_search_results"
-        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -82,7 +83,8 @@
         android:text="@string/remove_search_results"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="#4527A0"
+        android:textColor="#ffffff"
+        android:background="#008080"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_shoping_cart"
@@ -90,18 +92,19 @@
         app:layout_constraintTop_toBottomOf="@+id/product_grid_view" />
 
     <Button
+        style="@style/Widget.AppCompat.Button"
         android:id="@+id/btn_shoping_cart"
-        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="16dp"
         android:gravity="center"
+        android:background="#008080"
         android:text="@string/cart"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="#F57C00"
+        android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/product_grid_view" />
