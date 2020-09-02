@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -37,13 +38,19 @@ public class ShoppingCartActivity extends AppCompatActivity {
                 sendMail();
             }
         });
-        total.setText("Total : " + Total+ "\n proceed to cheeckout");
-        System.out.println(itemList.get(0).getName());
+        total.setText("Total : " + Total+ "\n proceed to checkout");
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        ShoppingCartAdapter adapter = new ShoppingCartAdapter(this, itemList);
-        recyclerView.setAdapter(adapter);
-        RecyclerView.LayoutManager LayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(LayoutManager);
+        TextView EmptyCartTextView = findViewById(R.id.EmptyCartText);
+        if (!itemList.isEmpty()){
+            ShoppingCartAdapter adapter = new ShoppingCartAdapter(this, itemList);
+            recyclerView.setAdapter(adapter);
+            RecyclerView.LayoutManager LayoutManager = new LinearLayoutManager(getApplicationContext());
+            recyclerView.setLayoutManager(LayoutManager);
+        }
+        else {
+            EmptyCartTextView.setVisibility(View.VISIBLE);
+            total.setVisibility(View.INVISIBLE);
+        }
     }
 
     static double countTotal() {
