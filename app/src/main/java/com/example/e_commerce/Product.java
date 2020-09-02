@@ -1,7 +1,6 @@
 package com.example.e_commerce;
 
 import android.database.Cursor;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -35,7 +34,7 @@ public class Product {
     public void load(Cursor[] cursors) {
         for(int i = 0; i < cursors.length; ++i) {
             while (cursors[i].moveToNext()) {
-                items[i].add(new Item(cursors[i].getString(0), cursors[i].getString(1), cursors[i].getString(1)));
+                items[i].add(new Item(cursors[i].getString(0), cursors[i].getString(1), cursors[i].getString(2)));
             }
             cursors[i].close();
         }

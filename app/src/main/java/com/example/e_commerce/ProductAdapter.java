@@ -1,15 +1,21 @@
 package com.example.e_commerce;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class ProductAdapter  extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
@@ -36,6 +42,12 @@ public class ProductAdapter  extends RecyclerView.Adapter<ProductAdapter.MyViewH
         Item item = items.get(position);
         holder.name.setText(item.getName());
         holder.price.setText("$" + item.getCost());
+        if(item.getPath() != null && item.getPath().length() != 0) {
+            String path = "@drawable/" + item.getPath();
+            int res = context.getResources().getIdentifier(path, "drawable", context.getPackageName());
+            holder.image.setImageResource(res);
+        }
+
     }
 
     @Override

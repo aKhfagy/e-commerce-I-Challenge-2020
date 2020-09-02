@@ -3,13 +3,13 @@ package com.example.e_commerce;
 public class Item {
     private final String name;
     private final String cost;
-    private final String size;
+    private final String path;
     private int quantity ;
 
-    public Item(String name, String cost, String size) {
+    public Item(String name, String cost, String path) {
         this.name = name;
         this.cost = cost;
-        this.size = size;
+        this.path = path;
         this.quantity = 1;
     }
 
@@ -21,8 +21,8 @@ public class Item {
         return this.cost;
     }
 
-    public String getSize() {
-        return this.size;
+    public String getPath() {
+        return this.path;
     }
 
     public int getQuantity() { return quantity; }

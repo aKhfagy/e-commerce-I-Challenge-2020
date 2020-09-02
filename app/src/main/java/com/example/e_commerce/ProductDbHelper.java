@@ -14,8 +14,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 class ProductDbHelper extends SQLiteOpenHelper {
-    private static String DB_PATH= "data/data/com.example.e_commerce/databases/";
-    public static String DB_NAME = "data";
+    public static String DB_PATH= "data/data/com.example.e_commerce/databases/";
+    public static String DB_NAME = "menu";
     private final Context context;
     private SQLiteDatabase dbObj;
     public String[] tableNames = new String[]{
@@ -30,7 +30,7 @@ class ProductDbHelper extends SQLiteOpenHelper {
     };
 
     public ProductDbHelper(Context context) {
-        super(context, DB_NAME, null, 5);
+        super(context, DB_NAME, null, 6);
         this.context = context;
     }
 

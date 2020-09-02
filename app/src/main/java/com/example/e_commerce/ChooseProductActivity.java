@@ -248,16 +248,16 @@ public class ChooseProductActivity extends AppCompatActivity implements Recycler
 
     @Override
     public void onCategoryButtonClick(int position) {
-        CategoryButtonItem categoryButtonItem = categoryButtonItems.get(position);
+
     }
 
     @Override
     public void update(int position) {
-        CategoryButtonItem categoryButtonItem = categoryButtonItems.get(position);
+
     }
 
     @Override
     public void delete(int position) {
-        CategoryButtonItem categoryButtonItem = categoryButtonItems.get(position);
+
     }
 }
