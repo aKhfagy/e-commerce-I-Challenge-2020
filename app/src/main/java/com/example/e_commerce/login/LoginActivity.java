@@ -44,8 +44,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginBtn.setOnClickListener(this);
         registerLink.setOnClickListener(this);
         forgetLink.setOnClickListener(this);
-
-
+        if (sharedPreferences.getBoolean(Constants.REMEMBER_ME, false))
+            startActivity(new Intent(LoginActivity.this, ChooseProductActivity.class));
     }
 
     private void clearFields() {

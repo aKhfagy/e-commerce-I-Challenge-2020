@@ -68,7 +68,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_mic_24"
-        tools:targetApi="lollipop" />
+        tools:targetApi="lollipop"
+        tools:ignore="VectorDrawableCompat" />
 
     <Button
         android:id="@+id/btn_remove_search_results"

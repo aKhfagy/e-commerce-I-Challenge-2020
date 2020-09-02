@@ -11,8 +11,8 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,7 +30,7 @@ import java.util.Locale;
 
 public class ChooseProductActivity extends AppCompatActivity implements RecyclerViewEvent {
     private Product p;
-    private TextView search;
+    private EditText search;
     private Button removeResults;
     private int index = 0, dummy = 0;
     public SharedPreferences loginSharedPreferences;
@@ -212,11 +212,7 @@ public class ChooseProductActivity extends AppCompatActivity implements Recycler
                 return true;
             case R.id.logout_link:
                 SharedPreferences.Editor editor =loginSharedPreferences.edit();
-                editor.putString(Constants.UserTable.USERNAME,"");
-                editor.putString(Constants.UserTable.EMAIL, "");
-                editor.putString(Constants.UserTable.PASSWORD, "");
-                editor.putString(Constants.UserTable.BIRTHDATE, "");
-                editor.putString(Constants.UserTable.REVIEWS, "Your reviews:");
+                editor.putString(Constants.UserTable.ID,"");
                 editor.putBoolean(Constants.REMEMBER_ME, false);
                 editor.apply();
                 ShoppingCartActivity.itemList.clear();
