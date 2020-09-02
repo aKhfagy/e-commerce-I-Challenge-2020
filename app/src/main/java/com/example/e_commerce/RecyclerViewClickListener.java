@@ -8,9 +8,10 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class CategoryButtonClickListener implements RecyclerView.OnItemTouchListener {
+public class RecyclerViewClickListener implements RecyclerView.OnItemTouchListener {
 
-    public CategoryButtonClickListener(Context context, final RecyclerView recyclerView, OnItemClickListener listener) {
+    public RecyclerViewClickListener(Context context, final RecyclerView recyclerView,
+                                     OnItemClickListener listener) {
         mListener = listener;
         mGuestureDetector = new GestureDetector(context, new GestureDetector.OnGestureListener() {
             @Override
@@ -29,20 +30,23 @@ public class CategoryButtonClickListener implements RecyclerView.OnItemTouchList
             }
 
             @Override
-            public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
+            public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent1, float v,
+                                    float v1) {
                 return false;
             }
 
             @Override
             public void onLongPress(MotionEvent motionEvent) {
-                View child = recyclerView.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
+                View child = recyclerView.findChildViewUnder(motionEvent.getX(),
+                        motionEvent.getY());
                 if(child != null && mListener != null) {
                     mListener.onLongItemClick(child, recyclerView.getChildAdapterPosition(child));
                 }
             }
 
             @Override
-            public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
+            public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v,
+                                   float v1) {
                 return false;
             }
         });

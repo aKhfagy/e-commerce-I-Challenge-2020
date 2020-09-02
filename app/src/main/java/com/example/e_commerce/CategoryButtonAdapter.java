@@ -14,9 +14,9 @@ import java.util.ArrayList;
 public class CategoryButtonAdapter  extends RecyclerView.Adapter<CategoryButtonAdapter.MyViewHolder> {
     private Context context;
     private ArrayList<CategoryButtonItem> categoryButtonItems;
-    private CategoryButtonEvent event;
+    private RecyclerViewEvent event;
 
-    public CategoryButtonAdapter(Context context, ArrayList<CategoryButtonItem> categoryButtonItems, CategoryButtonEvent event) {
+    public CategoryButtonAdapter(Context context, ArrayList<CategoryButtonItem> categoryButtonItems, RecyclerViewEvent event) {
         this.context = context;
         this.categoryButtonItems = categoryButtonItems;
         this.event = event;
