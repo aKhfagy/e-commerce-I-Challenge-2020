@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,12 +44,15 @@ public class ProductAdapter  extends RecyclerView.Adapter<ProductAdapter.MyViewH
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView name;
-        public TextView price;
+        public final TextView name;
+        public final TextView price;
+        public final ImageView image;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.product_name);
             price = itemView.findViewById(R.id.product_price);
+            image = itemView.findViewById(R.id.product_image);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
