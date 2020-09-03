@@ -1,9 +1,10 @@
-package com.example.e_commerce;
+package com.example.e_commerce.products;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.FragmentActivity;
 
+import com.example.e_commerce.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;

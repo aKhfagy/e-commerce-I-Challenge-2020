@@ -14,19 +14,19 @@
             android:label="@string/title_activity_account"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MapsActivity"
+            android:name=".products.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".ForgetPasswordActivity" />
+        <activity android:name=".login.ForgetPasswordActivity" />
         <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShoppingCartActivity" />
+        <activity android:name=".shoppingcart.ShoppingCartActivity" />
         <activity android:name=".login.RegisterActivity" />
         <activity
-            android:name=".ChooseProductActivity"
+            android:name=".products.ChooseProductActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
             android:label="@string/choose_product_label"
             android:launchMode="singleTop"

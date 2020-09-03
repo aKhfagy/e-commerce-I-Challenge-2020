@@ -1,4 +1,4 @@
-package com.example.e_commerce;
+package com.example.e_commerce.products;
 
 import android.content.Context;
 import android.database.Cursor;

@@ -1,4 +1,4 @@
-package com.example.e_commerce;
+package com.example.e_commerce.shoppingcart;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -15,21 +15,13 @@ import javax.mail.internet.MimeMessage;
 
 class MailAPI extends AsyncTask<Void,Void,Void>  {
 
-    //Add those line in dependencies
-    //implementation files('libs/activation.jar')
-    //implementation files('libs/additionnal.jar')
-    //implementation files('libs/mail.jar')
-
-    //Need INTERNET permission
 
     //Variables
     private Context mContext;
     private Session mSession;
-
     private String mEmail;
     private String mSubject;
     private String mMessage;
-
     private ProgressDialog mProgressDialog;
 
     //Constructor
@@ -44,7 +36,7 @@ class MailAPI extends AsyncTask<Void,Void,Void>  {
     protected void onPreExecute() {
         super.onPreExecute();
         //Show progress dialog while sending email
-        mProgressDialog = ProgressDialog.show(mContext,"Sending message", "Please wait...",false,false);
+        mProgressDialog = ProgressDialog.show(mContext,"Sending Confirmation Mail", "Please wait...",false,false);
     }
 
     @Override

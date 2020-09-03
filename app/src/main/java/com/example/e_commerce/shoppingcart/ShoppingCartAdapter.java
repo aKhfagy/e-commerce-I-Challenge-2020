@@ -1,4 +1,4 @@
-package com.example.e_commerce;
+package com.example.e_commerce.shoppingcart;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,10 +8,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.e_commerce.products.Item;
+import com.example.e_commerce.R;
+
 import java.util.ArrayList;
 
-import static com.example.e_commerce.ShoppingCartActivity.Total;
-import static java.lang.Integer.*;
+import static com.example.e_commerce.shoppingcart.ShoppingCartActivity.Total;
 
 public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapter.ViewHolder> {
     Context context;

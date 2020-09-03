@@ -1,4 +1,4 @@
-package com.example.e_commerce;
+package com.example.e_commerce.products;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

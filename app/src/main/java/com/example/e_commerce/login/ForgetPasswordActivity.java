@@ -1,4 +1,4 @@
-package com.example.e_commerce;
+package com.example.e_commerce.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.e_commerce.login.RegisterActivity;
-import com.example.e_commerce.login.UserDbHelper;
+import com.example.e_commerce.R;
 
 public class ForgetPasswordActivity extends AppCompatActivity implements View.OnClickListener  {
 

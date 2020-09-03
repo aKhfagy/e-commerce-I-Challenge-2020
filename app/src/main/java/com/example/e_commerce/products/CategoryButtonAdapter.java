@@ -1,4 +1,4 @@
-package com.example.e_commerce;
+package com.example.e_commerce.products;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.e_commerce.R;
 
 import java.util.ArrayList;
 

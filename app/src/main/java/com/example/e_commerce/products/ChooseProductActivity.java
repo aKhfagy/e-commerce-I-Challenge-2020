@@ -1,4 +1,4 @@
-package com.example.e_commerce;
+package com.example.e_commerce.products;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -22,7 +22,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.e_commerce.R;
 import com.example.e_commerce.login.Constants;
+import com.example.e_commerce.shoppingcart.ShoppingCartActivity;
 import com.example.e_commerce.ui.TabbedActivity.AccountActivity;
 
 import java.util.ArrayList;
@@ -237,7 +239,7 @@ public class ChooseProductActivity extends AppCompatActivity implements Recycler
         categoryButtonItems.add(new CategoryButtonItem(R.drawable.salad));
         categoryButtonItems.add(new CategoryButtonItem(R.drawable.happy_meal));
         categoryButtonItems.add(new CategoryButtonItem(R.drawable.drinks));
-        categoryButtonItems.add(new CategoryButtonItem(R.drawable.cone));
+        categoryButtonItems.add(new CategoryButtonItem(R.drawable.conevanilla));
         categoryButtonItems.add(new CategoryButtonItem(R.drawable.breakfast));
         categoryButtonItems.add(new CategoryButtonItem(R.drawable.platter));
     }

@@ -1,4 +1,4 @@
-package com.example.e_commerce;
+package com.example.e_commerce.shoppingcart;
 
 public class Utils {
     public static final String email = "ecommerceappichallenge@gmail.com";

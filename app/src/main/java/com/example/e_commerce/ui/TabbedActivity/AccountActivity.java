@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.e_commerce.MapsActivity;
+import com.example.e_commerce.products.MapsActivity;
 import com.example.e_commerce.R;
 import com.example.e_commerce.login.Constants;
 import com.example.e_commerce.login.UserDbHelper;

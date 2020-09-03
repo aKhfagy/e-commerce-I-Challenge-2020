@@ -1,4 +1,4 @@
-package com.example.e_commerce;
+package com.example.e_commerce.products;
 
 public class CategoryButtonItem {
     private final int resourceNumber;
