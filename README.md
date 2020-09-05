@@ -4,7 +4,7 @@ This project was done as the final project in the IChallenge Android Track at [C
 
 It is a shoping application for McDonald's, the menu was taken from this [website](https://food.ndtv.com/restaurants/mcdonalds-mcd-prices-and-menu-1790160). It was an increadible experience working with this team and the instructor was [Eng. Amr Abdelhameed](https://github.com/AmrAbdelhameed) who was increadibly eager to help us and share his knowledge.
 
-The team consisted of [Pierre Ehab (me)](https://github.com/PierreEhab), [Ahmed Khfagy](https://github.com/aKhfagy), and [Sara Nimr](https://github.com/Sara-M8).
+The team consisted of [Pierre Ehab (me)](https://github.com/PierreEhab), [Ahmed Khfagy](https://github.com/aKhfagy), and [Sara Nimer](https://github.com/Sara-M8).
 
 Features:
   - Login / Register 
